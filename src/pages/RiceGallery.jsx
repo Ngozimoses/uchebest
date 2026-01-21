@@ -24,7 +24,7 @@ export default function RiceGallery() {
       <div 
         className="fixed inset-0 -z-10 opacity-15"
         style={{
-          backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfWcXHdfPHmBkKtn-_-CmmBhMvo8XXMM9l1g&s')`,
+          backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1pOtVfgnWwANZfBLkU27KV7n43v2tWLtGKA&s')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',

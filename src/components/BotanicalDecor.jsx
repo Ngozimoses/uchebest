@@ -25,7 +25,7 @@ export default function BotanicalDecor() {
         transition={{ delay: 1, duration: 2 }}
         className="fixed bottom-0 left-0 w-full h-full -z-10 pointer-events-none"
         style={{
-          backgroundImage: `url('https://images.pexels.com/photos/1170623/pexels-photo-1170623.jpeg?auto=compress&cs=tinysrgb&w=1920')`,
+          backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1pOtVfgnWwANZfBLkU27KV7n43v2tWLtGKA&s')`,
           backgroundSize: '25%',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'bottom left',

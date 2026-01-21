@@ -12,7 +12,7 @@ export default function Home() {
       title: 'Nourish with Nigerian Rice',
       subtitle: 'Rich in Energy & Essential Minerals',
       description: 'Ofada and Basmati rice varieties are packed with magnesium, B-vitamins, and complex carbs for sustained energy. Perfect for active families and growing children.',
-      image: 'https://via.placeholder.com/600x600/8B5CF6/FFFFFF?text=Ofada+Rice+with+Garnish',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1frLEPcCcQJjxkGocPkQ5KxTatokgQUfCUA&s',
       badges: ['High in Fiber', 'Energy Sustaining', 'Low Fat'],
       ctaText: 'Explore Rice Varieties',
       ctaLink: '/rice',
@@ -22,7 +22,7 @@ export default function Home() {
       title: 'Fuel Your Day with Healthy Beans',
       subtitle: 'Plant-Based Protein Powerhouse',
       description: 'Honey beans and black-eyed peas deliver complete plant protein, iron, and fiber — supporting digestion, heart health, and muscle repair without cholesterol.',
-      image: 'https://via.placeholder.com/600x600/10B981/FFFFFF?text=Honey+Beans+with+Herbs',
+      image: 'https://www.spendwithpennies.com/wp-content/uploads/2024/07/The-Best-Baked-Beans-SpendWithPennies-6.jpg',
       badges: ['High Protein', 'Heart Healthy', 'Rich in Iron'],
       ctaText: 'Discover Bean Recipes',
       ctaLink: '/beans',
@@ -50,14 +50,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-dark text-text">
       <BotanicalDecor />
-{/* Hero Section with Botanical Overlay */}
-{/* Hero Section with Working Botanical Background */}
+{/* Hero Section with Working Background */}
 <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-  {/* Botanical Background Image (Pexels - CORS safe) */}
+  {/* WORKING RICE FIELD BACKGROUND (Pexels - free & safe) */}
   <div 
     className="absolute inset-0 -z-10"
     style={{
-      backgroundImage: `url('https://images.pexels.com/photos/3981821/pexels-photo-3981821.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1')`,
+      backgroundImage: `url('https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
@@ -91,7 +90,6 @@ export default function Home() {
     </div>
   </div>
 
-  {/* Bottom Gradient Fade */}
   <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-dark to-transparent pointer-events-none"></div>
 </section>
       {/* Features Section */}

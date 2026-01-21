@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const beansData = [
-  { id: '1', name: 'Honey Beans', description: 'Sweet, soft beans cooked with palm oil and peppers.', image: 'https://via.placeholder.com/300x200/10B981/FFFFFF?text=Honey+Beans' },
-  { id: '2', name: 'Black-eyed Peas', description: 'Protein-rich legume used in stews and salads.', image: 'https://via.placeholder.com/300x200/10B981/FFFFFF?text=Black-eyed' },
-  { id: '3', name: 'Brown Beans', description: 'Nutritious local beans ideal for porridge or stew.', image: 'https://via.placeholder.com/300x200/10B981/FFFFFF?text=Brown+Beans' },
-  { id: '4', name: 'Lima Beans', description: 'Buttery-textured beans perfect for soups and side dishes.', image: 'https://via.placeholder.com/300x200/10B981/FFFFFF?text=Lima' },
+  { id: '1', name: 'Honey Beans', description: 'Sweet, soft beans cooked with palm oil and peppers.', image: 'https://www.heynutritionlady.com/wp-content/uploads/2023/05/How_to_Cook_Kidney_Beans-SQ.jpg' },
+  { id: '2', name: 'Black-eyed Peas', description: 'Protein-rich legume used in stews and salads.', image: 'https://www.spendwithpennies.com/wp-content/uploads/2024/07/The-Best-Baked-Beans-SpendWithPennies-6.jpg' },
+  { id: '3', name: 'Brown Beans', description: 'Nutritious local beans ideal for porridge or stew.', image: 'https://cdn.britannica.com/36/245936-050-B227C955/Adzuki-beans.jpg' },
+  { id: '4', name: 'Lima Beans', description: 'Buttery-textured beans perfect for soups and side dishes.', image: 'https://www.nescafe.com/au/sites/default/files/2024-04/Untitled-5%20copy_6_0.jpg' },
 ];
 
 export default function BeansGallery() {
@@ -24,7 +24,7 @@ export default function BeansGallery() {
       <div 
         className="fixed inset-0 -z-10 opacity-15"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1606312619070-d48b4c715922?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundImage: `url('https://www.spendwithpennies.com/wp-content/uploads/2024/07/The-Best-Baked-Beans-SpendWithPennies-6.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
