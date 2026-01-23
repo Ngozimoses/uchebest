@@ -31,22 +31,66 @@ export default function RiceGallery() {
         }}
       />
       
-      {/* Hero Banner */}
-      <section className="bg-gradient-to-r from-purple-900/30 to-gold/10 py-16">
-        <div className="container mx-auto px-4 text-center">
+   <section className="relative py-24 md:py-32 overflow-hidden">
+        {/* Background Image */}
+      <div className="absolute inset-0">
+    <div 
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+      style={{
+        backgroundImage: `url('https://businessdayintelligence.ng/wp-content/uploads/2022/03/local-rice-700x375.jpg')`,
+      }}
+    />
+    
+    {/* Gradient Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-purple-900/40"></div>
+  </div>
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/70 via-emerald-900/50 to-gold/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold mb-4 text-white"
-          >
-            Our Premium <span className="text-gold">Rice</span> Collection
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight"
+          >  
+         
+         Our Premium <span className="text-gold">Rice</span> Collection
           </motion.h1>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Discover authentic Nigerian and international rice varieties with detailed preparation guides.
-          </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-8"
+          >
+             Discover authentic Nigerian and international rice varieties with detailed preparation guides.
+      
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link
+              to="/shop"
+              className="px-8 py-3 bg-gold text-black font-semibold rounded-full hover:bg-yellow-500 transition-transform hover:scale-105"
+            >
+              Shop Now
+            </Link>
+            <Link
+              to="/recipes"
+              className="px-8 py-3 border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-black transition-all"
+            >
+              View Recipes
+            </Link>
+          </motion.div>
         </div>
       </section>
+    
 
       {/* Search Bar */}
       <div className="container mx-auto px-4 mt-8 max-w-md">

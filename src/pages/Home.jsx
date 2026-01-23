@@ -51,46 +51,47 @@ export default function Home() {
     <div className="min-h-screen bg-dark text-text">
       <BotanicalDecor />
 {/* Hero Section with Working Background */}
-<section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-  {/* WORKING RICE FIELD BACKGROUND (Pexels - free & safe) */}
-  <div 
-    className="absolute inset-0 -z-10"
-    style={{
-      backgroundImage: `url('https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed',
-    }}
-  />
-
-  {/* Gradient Overlay for Readability */}
-  <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-purple-900/50 z-0"></div>
+{/* Hero Section */}
+<section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+  {/* Background Image Container */}
+  <div className="absolute inset-0">
+    <div 
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+      style={{
+        backgroundImage: `url('https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080')`,
+      }}
+    />
+    
+    {/* Gradient Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-purple-900/40"></div>
+  </div>
 
   {/* Content */}
   <div className="container mx-auto px-4 relative z-10 text-center">
-    <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight text-gold">
+    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-gold">
       Welcome to <span className="text-white">Uchebest Store</span>
     </h1>
-    <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-300">
+    <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto text-gray-200">
       Premium Nigerian rice & beans, grown with care — delivered to your table.
     </p>
-    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+    <div className="flex flex-col sm:flex-row gap-6 justify-center">
       <Link
         to="/rice"
-        className="px-6 py-3 bg-gold text-black font-semibold rounded-full hover:bg-yellow-500 transition"
+        className="px-8 py-4 bg-gold text-black font-semibold rounded-full hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105"
       >
         Explore Rice
       </Link>
       <Link
         to="/beans"
-        className="px-6 py-3 border border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-black transition"
+        className="px-8 py-4 border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-black transition-all duration-300"
       >
         Explore Beans
       </Link>
     </div>
   </div>
 
-  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-dark to-transparent pointer-events-none"></div>
+  {/* Bottom Gradient Fade */}
+  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent pointer-events-none"></div>
 </section>
       {/* Features Section */}
       <section className="py-16 bg-card">
@@ -221,11 +222,24 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12 text-gold">Our Signature Products</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: "Ofada Rice", img: "https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=Ofada", desc: "Traditional short-grain with earthy aroma" },
-              { name: "Honey Beans", img: "https://via.placeholder.com/300x200/10B981/FFFFFF?text=Honey+Beans", desc: "Sweet, soft, cooked with palm oil" },
-              { name: "Basmati Rice", img: "https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=Basmati", desc: "Long-grain aromatic for biryanis" },
-              { name: "Black-eyed Peas", img: "https://via.placeholder.com/300x200/10B981/FFFFFF?text=Black-eyed", desc: "Protein-rich legume for stews" },
-            ].map((item, i) => (
+            { 
+    name: "Ofada Rice", 
+    img: "https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", 
+    desc: "Traditional short-grain with earthy aroma"
+  }, { 
+    name: "Honey Beans", 
+    img: "https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", 
+    desc: "Sweet, soft, cooked with palm oil"
+  },
+  { 
+    name: "Basmati Rice", 
+    img: "https://images.pexels.com/photos/12737658/pexels-photo-12737658.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", 
+    desc: "Long-grain aromatic for biryanis"
+  }, { 
+    name: "Black-eyed Peas", 
+    img: "https://images.pexels.com/photos/7358698/pexels-photo-7358698.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", 
+    desc: "Protein-rich legume for stews"
+  },    ].map((item, i) => (
               <div key={i} className="bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
                 <img src={item.img} alt={item.name} className="w-full h-48 object-cover" />
                 <div className="p-4">
