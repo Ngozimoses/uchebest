@@ -2,133 +2,322 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { FaSearch, FaShoppingCart, FaLeaf, FaStar, FaFire, FaCheck, FaSeedling } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
 
 const beansData = [
-  { id: '1', name: 'Honey Beans', description: 'Sweet, soft beans cooked with palm oil and peppers.', image: 'https://www.heynutritionlady.com/wp-content/uploads/2023/05/How_to_Cook_Kidney_Beans-SQ.jpg' },
-  { id: '2', name: 'Black-eyed Peas', description: 'Protein-rich legume used in stews and salads.', image: 'https://www.spendwithpennies.com/wp-content/uploads/2024/07/The-Best-Baked-Beans-SpendWithPennies-6.jpg' },
-  { id: '3', name: 'Brown Beans', description: 'Nutritious local beans ideal for porridge or stew.', image: 'https://cdn.britannica.com/36/245936-050-B227C955/Adzuki-beans.jpg' },
-  { id: '4', name: 'Lima Beans', description: 'Buttery-textured beans perfect for soups and side dishes.', image: 'https://www.nescafe.com/au/sites/default/files/2024-04/Untitled-5%20copy_6_0.jpg' },
+  { 
+    id: '1', 
+    name: 'Honey Beans', 
+    description: 'Sweet, soft beans cooked with palm oil and peppers. Perfect for traditional Nigerian bean porridge.', 
+    image: 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    price: '₦4,800',
+    weight: '1kg pack',
+    origin: 'Southwest Nigeria',
+    cookingTime: '45-60 mins',
+    rating: 4.7,
+    tags: ['Sweet', 'Organic', 'Traditional'],
+    category: 'local'
+  },
+  { 
+    id: '2', 
+    name: 'Black-eyed Peas', 
+    description: 'Protein-rich legume used in stews and salads. Excellent for healthy meal prep.', 
+    image: 'https://images.pexels.com/photos/7358698/pexels-photo-7358698.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    price: '₦3,900',
+    weight: '1kg pack',
+    origin: 'Northern Nigeria',
+    cookingTime: '30-45 mins',
+    rating: 4.6,
+    tags: ['High Protein', 'Versatile', 'Healthy'],
+    category: 'local'
+  },
+  { 
+    id: '3', 
+    name: 'Brown Beans', 
+    description: 'Nutritious local beans ideal for porridge or stew. Rich in fiber and minerals.', 
+    image: 'https://images.pexels.com/photos/580615/pexels-photo-580615.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    price: '₦4,300',
+    weight: '1kg pack',
+    origin: 'Middle Belt',
+    cookingTime: '50-70 mins',
+    rating: 4.5,
+    tags: ['Nutritious', 'Fiber-rich', 'Local'],
+    category: 'local'
+  },
+  { 
+    id: '4', 
+    name: 'White Beans', 
+    description: 'Creamy white beans perfect for porridge and traditional Nigerian recipes.', 
+    image: 'https://images.pexels.com/photos/580612/pexels-photo-580612.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    price: '₦4,200',
+    weight: '1kg pack',
+    origin: 'Multiple regions',
+    cookingTime: '40-55 mins',
+    rating: 4.4,
+    tags: ['Creamy', 'Versatile', 'Popular'],
+    category: 'local'
+  },
+  { 
+    id: '5', 
+    name: 'Kidney Beans', 
+    description: 'Vibrant red beans perfect for salads, stews, and chilli recipes.', 
+    image: 'https://images.pexels.com/photos/580613/pexels-photo-580613.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    price: '₦4,500',
+    weight: '1kg pack',
+    origin: 'Imported',
+    cookingTime: '35-50 mins',
+    rating: 4.7,
+    tags: ['Colorful', 'Healthy', 'Imported'],
+    category: 'imported'
+  },
+  { 
+    id: '6', 
+    name: 'Lima Beans', 
+    description: 'Buttery-textured beans perfect for soups and side dishes.', 
+    image: 'https://images.pexels.com/photos/580617/pexels-photo-580617.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    price: '₦4,700',
+    weight: '1kg pack',
+    origin: 'Imported',
+    cookingTime: '45-60 mins',
+    rating: 4.3,
+    tags: ['Buttery', 'Soups', 'Side Dish'],
+    category: 'imported'
+  },
+  { 
+    id: '7', 
+    name: 'Chickpeas', 
+    description: 'Versatile legumes perfect for hummus, stews, and salads.', 
+    image: 'https://images.pexels.com/photos/580619/pexels-photo-580619.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    price: '₦5,800',
+    weight: '1kg pack',
+    origin: 'Imported',
+    cookingTime: '40-55 mins',
+    rating: 4.8,
+    tags: ['Versatile', 'Protein', 'Healthy'],
+    category: 'imported'
+  },
+  { 
+    id: '8', 
+    name: 'Pigeon Peas', 
+    description: 'Small, protein-packed legumes with nutty flavor for traditional dishes.', 
+    image: 'https://images.pexels.com/photos/6646756/pexels-photo-6646756.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    price: '₦5,100',
+    weight: '1kg pack',
+    origin: 'Local',
+    cookingTime: '35-50 mins',
+    rating: 4.4,
+    tags: ['Nutty', 'Protein-rich', 'Traditional'],
+    category: 'local'
+  },
+];
+
+const categories = [
+  { id: 'all', name: 'All Beans', icon: '🫘' },
+  { id: 'local', name: 'Local', icon: '🇳🇬' },
+  { id: 'imported', name: 'Imported', icon: '🌍' },
+  { id: 'best', name: 'Best Sellers', icon: '🔥' },
+  { id: 'organic', name: 'Organic', icon: '🌿' },
+  { id: 'protein', name: 'High Protein', icon: '💪' },
 ];
 
 export default function BeansGallery() {
+  const { isDarkMode } = useTheme();
   const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showFilters, setShowFilters] = useState(false);
 
-  const filteredBeans = beansData.filter(bean =>
-    bean.name.toLowerCase().includes(search.toLowerCase()) ||
-    bean.description.toLowerCase().includes(search.toLowerCase())
-  );
+  // Theme-based classes
+  const themeClasses = {
+    background: isDarkMode ? 'bg-dark' : 'bg-light',
+    text: isDarkMode ? 'text-text' : 'text-textLight',
+    card: isDarkMode ? 'bg-card' : 'bg-white',
+    border: isDarkMode ? 'border-gray-800' : 'border-gray-200',
+    textPrimary: isDarkMode ? 'text-white' : 'text-gray-900',
+    textSecondary: isDarkMode ? 'text-gray-300' : 'text-gray-700',
+    textMuted: isDarkMode ? 'text-gray-400' : 'text-gray-500',
+    hoverBg: isDarkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100',
+    goldBg: 'bg-gradient-to-r from-gold to-yellow-500',
+    goldText: 'text-gold',
+    goldBorder: 'border-gold',
+    emeraldBg: isDarkMode 
+      ? 'bg-gradient-to-br from-emerald-900/70 via-emerald-900/50 to-gold/40' 
+      : 'bg-gradient-to-br from-emerald-900/40 via-emerald-900/20 to-gold/30',
+    cardGradient: isDarkMode 
+      ? 'bg-gradient-to-br from-card to-dark/50' 
+      : 'bg-gradient-to-br from-white to-gray-50',
+  };
+
+  // Filter beans based on search and category
+  const filteredBeans = beansData.filter(bean => {
+    const matchesSearch = 
+      bean.name.toLowerCase().includes(search.toLowerCase()) ||
+      bean.description.toLowerCase().includes(search.toLowerCase()) ||
+      bean.tags.some(tag => tag.toLowerCase().includes(search.toLowerCase()));
+    
+    const matchesCategory = 
+      selectedCategory === 'all' || 
+      (selectedCategory === 'best' && bean.rating >= 4.7) ||
+      (selectedCategory === 'organic' && bean.tags.includes('Organic')) ||
+      (selectedCategory === 'protein' && bean.tags.some(tag => tag.includes('Protein'))) ||
+      bean.category === selectedCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
 
   return (
-    <div className="min-h-screen bg-dark text-text pb-16">
-      {/* Beans Farm Background Overlay */}
-      <div 
-        className="fixed inset-0 -z-10 opacity-15"
-        style={{
-          backgroundImage: `url('https://www.spendwithpennies.com/wp-content/uploads/2024/07/The-Best-Baked-Beans-SpendWithPennies-6.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      />
-      
-      {/* Hero Banner with Background Image */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        {/* Background Image */}
-      <div className="absolute inset-0">
-    <div 
-      className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
-      style={{
-        backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfh7gn45uZ-XB_QZmDmv-LBl_d71x6uUWKGQ&s')`,
-      }}
-    />
-    
-    {/* Gradient Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-purple-900/40"></div>
-  </div>
-        
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/70 via-emerald-900/50 to-gold/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+    <div className={`min-h-screen pb-16 transition-colors duration-300 ${themeClasses.background} ${themeClasses.text}`}>
+      {/* Hero Section */}
+      <section className="relative py-12 md:py-20 lg:py-28 overflow-hidden">
+        {/* Background Image with Gradient */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1565182999561-18d7dc61c393?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+            }}
+          />
+          
+          {/* Gradient Overlays */}
+          <div className={`absolute inset-0 ${themeClasses.emeraldBg}`}></div>
+          <div className={`absolute inset-0 bg-gradient-to-t ${
+            isDarkMode ? 'from-dark' : 'from-white'
+          } via-transparent to-transparent`}></div>
+        </div>
         
         {/* Content */}
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight"
-          >
-            Our Nutritious <span className="text-gold">Beans</span> Selection
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-8"
-          >
-            Explore traditional and modern beans with expert preparation methods.
-          </motion.p>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.8 }}
           >
-            <Link
-              to="/shop"
-              className="px-8 py-3 bg-gold text-black font-semibold rounded-full hover:bg-yellow-500 transition-transform hover:scale-105"
+            <div className={`inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 backdrop-blur-sm rounded-full text-sm font-medium mb-4 sm:mb-6 ${
+              isDarkMode
+                ? 'bg-emerald-500/20 text-emerald-300'
+                : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+            }`}>
+              <FaSeedling className="mr-2" />
+              100% Organic & Fresh
+            </div>
+            
+            <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>
+              Our Nutritious <span className="text-emerald-400">Beans</span> Selection
+            </h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl md:max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed ${
+                isDarkMode ? 'text-gray-200' : 'text-gray-700'
+              }`}
             >
-              Shop Now
-            </Link>
-            <Link
-              to="/recipes"
-              className="px-8 py-3 border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-black transition-all"
+              Explore traditional and modern beans varieties with expert preparation methods and nutritional benefits.
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
             >
-              View Recipes
-            </Link>
+              <Link
+                to="#shop"
+                className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-semibold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center text-sm sm:text-base"
+              >
+                <FaShoppingCart className="mr-2" />
+                Shop Premium Beans
+              </Link>
+              <Link
+                to="/recipes"
+                className={`px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 border-2 font-semibold rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center text-sm sm:text-base ${
+                  isDarkMode
+                    ? 'border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-white'
+                    : 'border-emerald-500 text-emerald-600 hover:bg-emerald-500 hover:text-white'
+                }`}
+              >
+                View Bean Recipes
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Search Bar */}
-      <div className="container mx-auto px-4 mt-8 max-w-md relative z-10">
-        <div className="relative">
-          <svg 
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input
-            type="text"
-            placeholder="Search beans by name or description..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-card/80 backdrop-blur-sm border border-gray-700 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
-          />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8">
+        <div className="max-w-md mx-auto relative z-10">
+          <div className="relative">
+            <FaSearch className={`absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-500'
+            }`} />
+            <input
+              type="text"
+              placeholder="Search beans by name or description..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 backdrop-blur-sm rounded-full text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
+                isDarkMode
+                  ? 'bg-card/80 border border-gray-700 text-white placeholder-gray-400'
+                  : 'bg-white/80 border border-gray-300 text-gray-900 placeholder-gray-500'
+              }`}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Category Filter Chips */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-4 sm:mt-6">
+        <div className="flex overflow-x-auto pb-2 sm:pb-3 space-x-1.5 sm:space-x-2 no-scrollbar">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id)}
+              className={`flex-shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all duration-300 flex items-center whitespace-nowrap text-sm sm:text-base ${
+                selectedCategory === category.id
+                  ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-lg'
+                  : isDarkMode
+                    ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              <span className="mr-1.5 sm:mr-2">{category.icon}</span>
+              {category.name}
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Beans Grid */}
-      <div className="container mx-auto px-4 mt-12 relative z-10">
+      <div id="shop" className="container mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8">
         {filteredBeans.length === 0 ? (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-16"
+            className="text-center py-12 sm:py-16"
           >
-            <div className="inline-block p-8 bg-card/50 backdrop-blur-sm rounded-2xl">
-              <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <h3 className="text-xl font-semibold text-white mb-2">No beans found</h3>
-              <p className="text-gray-400">Try a different search term</p>
+            <div className={`inline-block p-6 sm:p-8 backdrop-blur-sm rounded-xl sm:rounded-2xl ${
+              isDarkMode
+                ? 'bg-card/50'
+                : 'bg-white/80 border border-gray-200'
+            }`}>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <FaSearch className={`text-2xl sm:text-3xl ${
+                  isDarkMode ? 'text-emerald-400' : 'text-emerald-500'
+                }`} />
+              </div>
+              <h3 className={`text-lg sm:text-xl font-semibold mb-1.5 sm:mb-2 ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}>No beans found</h3>
+              <p className={`text-sm sm:text-base ${
+                isDarkMode ? 'text-gray-400' : 'text-gray-500'
+              }`}>Try a different search term</p>
             </div>
           </motion.div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {filteredBeans.map((bean, index) => (
               <motion.div
                 key={bean.id}
@@ -136,32 +325,104 @@ export default function BeansGallery() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="bg-card/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-gold/30"
+                className={`group backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 ${
+                  isDarkMode
+                    ? `${themeClasses.cardGradient} border border-gray-800 hover:border-emerald-500/30`
+                    : 'bg-white border border-gray-200 hover:border-emerald-300 shadow-light hover:shadow-xl'
+                }`}
               >
-                <div className="relative overflow-hidden h-56">
+                <div className="relative overflow-hidden h-40 sm:h-48 md:h-56">
                   <img 
                     src={bean.image} 
                     alt={bean.name} 
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 right-3 bg-gold text-black px-3 py-1 rounded-full text-sm font-bold">
+                  <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
                     Featured
                   </div>
+                  
+                  {/* Rating */}
+                  <div className={`absolute bottom-2 sm:bottom-3 right-2 sm:right-3 backdrop-blur-sm rounded-full px-2 sm:px-3 py-0.5 sm:py-1 flex items-center ${
+                    isDarkMode ? 'bg-black/70' : 'bg-white/90'
+                  }`}>
+                    <FaStar className="text-yellow-400 mr-0.5 sm:mr-1 text-xs sm:text-sm" />
+                    <span className={`font-bold text-sm sm:text-base ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>{bean.rating}</span>
+                  </div>
+                  
+                  {/* Price */}
+                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-bold px-3 sm:px-4 py-1 sm:py-2 rounded-full shadow-lg text-sm sm:text-base">
+                    {bean.price}
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-3">{bean.name}</h3>
-                  <p className="text-gray-300 mb-4">{bean.description}</p>
+                <div className="p-3 sm:p-4 md:p-5 lg:p-6">
+                  <h3 className={`text-lg sm:text-xl font-bold mb-2 sm:mb-3 ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {bean.name}
+                  </h3>
+                  <p className={`mb-3 sm:mb-4 text-sm sm:text-base ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
+                    {bean.description}
+                  </p>
+                  
+                  {/* Details */}
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-6">
+                    <div className={`flex items-center text-xs sm:text-sm ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      <span className={`mr-1.5 sm:mr-2 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                      }`}>📍</span>
+                      <span className="truncate">{bean.origin}</span>
+                    </div>
+                    <div className={`flex items-center text-xs sm:text-sm ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      <span className={`mr-1.5 sm:mr-2 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                      }`}>⏱️</span>
+                      {bean.cookingTime}
+                    </div>
+                  </div>
+                  
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-4 sm:mb-6">
+                    {bean.tags.slice(0, 3).map((tag, i) => (
+                      <span 
+                        key={i} 
+                        className={`px-2 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium ${
+                          isDarkMode
+                            ? 'bg-emerald-900/40 text-emerald-300'
+                            : 'bg-emerald-100 text-emerald-700'
+                        }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
                   <div className="flex justify-between items-center">
                     <Link 
                       to={`/beans/${bean.id}`} 
-                      className="text-gold hover:text-yellow-400 font-medium flex items-center group"
+                      className={`font-medium flex items-center group text-sm sm:text-base ${
+                        isDarkMode
+                          ? 'text-emerald-400 hover:text-emerald-300'
+                          : 'text-emerald-600 hover:text-emerald-700'
+                      }`}
                     >
                       View Details
-                      <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="ml-1.5 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
                     </Link>
-                    <button className="px-4 py-2 bg-gold/10 text-gold hover:bg-gold hover:text-black rounded-full text-sm font-medium transition-colors">
+                    <button className={`px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                      isDarkMode
+                        ? 'bg-gradient-to-r from-emerald-500/10 to-emerald-500/5 text-emerald-400 hover:bg-emerald-500 hover:text-white'
+                        : 'bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-700 hover:bg-emerald-200'
+                    }`}>
                       Add to Cart
                     </button>
                   </div>
@@ -172,43 +433,65 @@ export default function BeansGallery() {
         )}
       </div>
 
-      {/* More Beans Info Section */}
-      <section className="container mx-auto px-4 mt-20 relative z-10">
-        <div className="bg-gradient-to-r from-emerald-900/20 to-gold/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-gray-800">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+      {/* Features Section */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12 md:mt-16 lg:mt-20 relative z-10">
+        <div className={`backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 border ${
+          isDarkMode
+            ? 'bg-gradient-to-r from-emerald-900/20 to-gold/10 border-emerald-800/30'
+            : 'bg-gradient-to-r from-emerald-50 to-yellow-50 border-emerald-200'
+        }`}>
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-4">Why Choose Our Beans?</h2>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-300">100% organic and locally sourced</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-300">Rich in protein and essential nutrients</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-300">Perfect for traditional Nigerian recipes</span>
-                </li>
+              <h2 className={`text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}>
+                Why Choose Our Beans?
+              </h2>
+              <ul className="space-y-2 sm:space-y-3">
+                {[
+                  '100% organic and locally sourced',
+                  'Rich in protein and essential nutrients',
+                  'Perfect for traditional Nigerian recipes',
+                  'Freshly harvested and properly stored',
+                  'Affordable premium quality',
+                  'Eco-friendly packaging'
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start">
+                    <FaCheck className={`w-4 h-4 sm:w-5 sm:h-5 mt-0.5 sm:mt-1 mr-2 sm:mr-3 flex-shrink-0 ${
+                      isDarkMode ? 'text-emerald-400' : 'text-emerald-500'
+                    }`} />
+                    <span className={`text-sm sm:text-base ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="text-center">
-              <div className="inline-block p-6 bg-dark/50 rounded-2xl">
-                <div className="text-4xl font-bold text-gold mb-2">4.8/5</div>
-                <div className="text-gray-300 mb-2">Customer Rating</div>
+              <div className={`inline-block p-4 sm:p-6 backdrop-blur-sm rounded-xl sm:rounded-2xl ${
+                isDarkMode ? 'bg-dark/50' : 'bg-white/80 border border-gray-200'
+              }`}>
+                <div className={`text-3xl sm:text-4xl font-bold mb-1.5 sm:mb-2 ${
+                  isDarkMode ? 'text-emerald-400' : 'text-emerald-600'
+                }`}>
+                  4.8/5
+                </div>
+                <div className={`mb-1.5 sm:mb-2 text-sm sm:text-base ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  Customer Rating
+                </div>
                 <div className="flex justify-center">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+                    <FaStar key={i} className={`w-4 h-4 sm:w-5 sm:h-5 ${
+                      i < 4 ? 'text-yellow-400' : 'text-gray-400'
+                    }`} />
                   ))}
+                </div>
+                <div className={`mt-3 sm:mt-4 text-xs sm:text-sm ${
+                  isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                }`}>
+                  Based on 500+ reviews
                 </div>
               </div>
             </div>
