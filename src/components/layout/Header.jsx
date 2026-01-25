@@ -89,11 +89,8 @@ export default function Header({ isDarkMode, toggleTheme }) {
                 ? 'text-gray-300 hover:text-gold hover:bg-gray-800' 
                 : 'text-gray-700 hover:text-yellow-600 hover:bg-gray-100'
             }`}>
-              <FaShoppingCart className="text-xl" />
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-gold text-black text-xs rounded-full flex items-center justify-center font-bold">
-                3
-              </span>
-              <span className="hidden lg:inline ml-2">Cart</span>
+            
+        
             </button>
 
             {/* User Icon */}
