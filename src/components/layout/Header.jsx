@@ -13,8 +13,7 @@ export default function Header({ isDarkMode, toggleTheme }) {
     { name: 'Beans', path: '/beans', icon: '🫘' },
     { name: 'Products', path: '/products', icon: '🛒' },
     { name: 'Budget', path: '/budget', icon: '💰' },
-    { name: 'Scan & Earn', path: '/scan', icon: '📱' },
-    { name: 'Recipes', path: '/recipes', icon: '🍳' },
+    { name: 'Scan & Earn', path: '/scan', icon: '📱' }, 
   ];
 
   const isActive = (path) => location.pathname === path;
