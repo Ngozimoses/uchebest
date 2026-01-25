@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import { ThemeProvider } from './context/ThemeContext';
+import ScrollToTop from './components/ScrollToTop'; // Add this import
 
 // Non-lazy pages (always loaded)
 import Home from './pages/Home';
@@ -9,7 +10,7 @@ import RiceGallery from './pages/RiceGallery';
 import BeansGallery from './pages/BeansGallery';
 import BudgetManager from './pages/BudgetManager';
 import ScanPoints from './pages/ScanPoints';
-import ProductsPage from './pages/ProductsPage'; // Add this import
+import ProductsPage from './pages/ProductsPage';
 
 // Lazy-loaded detail pages
 const RiceDetails = lazy(() => import('./components/rice/RiceDetails'));
@@ -26,6 +27,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
+        <ScrollToTop /> {/* Add this component here */}
         <Suspense fallback={<LazyFallback />}>
           <Routes>
             <Route path="/" element={<Layout><Home /></Layout>} />
@@ -33,7 +35,7 @@ function App() {
             <Route path="/rice/:id" element={<Layout><RiceDetails /></Layout>} />
             <Route path="/beans" element={<Layout><BeansGallery /></Layout>} />
             <Route path="/beans/:id" element={<Layout><BeansDetails /></Layout>} />
-            <Route path="/products" element={<Layout><ProductsPage /></Layout>} /> {/* Add this line */}
+            <Route path="/products" element={<Layout><ProductsPage /></Layout>} />
             <Route path="/budget" element={<Layout><BudgetManager /></Layout>} />
             <Route path="/scan" element={<Layout><ScanPoints /></Layout>} />
           </Routes>
