@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import FloatingActions from '../components/FloatingActions';
 import BotanicalDecor from '../components/BotanicalDecor';
+
+import { usePersistedState, useSessionState } from '../hooks/usePersistedState';
 import { useTheme } from '../context/ThemeContext'; // Use the hook
 import { 
   FaLeaf, FaChartLine, FaQrcode, FaTruck, FaShieldAlt, FaSeedling,
@@ -13,7 +15,7 @@ import {
 export default function Home() {
   const { isDarkMode } = useTheme(); // Use the hook instead of useContext
   
-  
+
   // Define carousel slides with better images
   const carouselSlides = [
     {
@@ -40,16 +42,16 @@ export default function Home() {
     },
   ];
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-
+     const [currentSlide, setCurrentSlide] = useSessionState('home-carousel-slide', 0);
+  
   // Auto-rotate every 6 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, [carouselSlides.length]);
-
+  }, [carouselSlides.length, setCurrentSlide]); // Add setCurrentSlide to dependencies
+  
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
   };

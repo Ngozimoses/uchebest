@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FaSearch, FaShoppingCart, FaLeaf, FaStar, FaFire, FaCheck, FaSeedling } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
 
+import { usePersistedState, useSessionState } from '../hooks/usePersistedState';
 const beansData = [
   { 
     id: '1', 
@@ -123,9 +124,10 @@ const categories = [
 
 export default function BeansGallery() {
   const { isDarkMode } = useTheme();
-  const [search, setSearch] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [showFilters, setShowFilters] = useState(false);
+
+  const [search, setSearch] = useSessionState('beans-search', '');
+  const [selectedCategory, setSelectedCategory] = useSessionState('beans-category', 'all');
+  const [showFilters, setShowFilters] = useSessionState('beans-show-filters', false);
 
   // Theme-based classes
   const themeClasses = {

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FaSearch, FaShoppingCart, FaFilter, FaFire, FaLeaf, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
 
+import { usePersistedState, useSessionState } from '../hooks/usePersistedState';
 const riceData = [
   { 
     id: '1', 
@@ -122,12 +123,11 @@ const categories = [
 ];
 
 export default function RiceGallery() {
-  const { isDarkMode } = useTheme();
-  const [search, setSearch] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [sortBy, setSortBy] = useState('featured');
-  const [showFilters, setShowFilters] = useState(false);
-
+  const { isDarkMode } = useTheme();  
+  const [search, setSearch] = useSessionState('rice-search', '');
+  const [selectedCategory, setSelectedCategory] = useSessionState('rice-category', 'all');
+  const [sortBy, setSortBy] = useSessionState('rice-sort', 'featured');
+  const [showFilters, setShowFilters] = useSessionState('rice-show-filters', false);
   // Theme-based classes
   const themeClasses = {
     background: isDarkMode ? 'bg-dark' : 'bg-light',

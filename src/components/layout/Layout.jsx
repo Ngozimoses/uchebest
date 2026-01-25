@@ -1,10 +1,9 @@
-// src/components/layout/Layout.jsx
 import Header from './Header';
 import Footer from './Footer';
-import { useTheme } from '../../context/ThemeContext'; // Add this import
+import { useTheme } from '../../context/ThemeContext';
 
 export default function Layout({ children }) {
-  const { isDarkMode, toggleTheme } = useTheme(); // Get theme from context
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
@@ -12,46 +11,28 @@ export default function Layout({ children }) {
         ? 'bg-dark text-text' 
         : 'bg-light text-textLight'
     } relative`}>
-      {/* Background System */}
-      <div className="fixed inset-0 -z-10">
+      {/* Subtle Background Pattern */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
         {isDarkMode ? (
           <>
-            {/* Dark Mode Background */}
-            <div className="hidden lg:block absolute inset-0 opacity-20">
-              <div 
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1583744946570-2a674c5245d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundAttachment: 'fixed',
-                }}
-              />
-            </div>
-            <div className="lg:hidden absolute inset-0 opacity-15">
-              <div 
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-dark/95 to-black/90"></div>
+            {/* Dark Mode: Very subtle gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-dark via-gray-900 to-black"></div>
+            {/* Subtle noise texture */}
+            <div className="absolute inset-0 opacity-[0.02]" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+            }}></div>
           </>
         ) : (
           <>
-            {/* Light Mode Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-light via-gray-50 to-gray-100"></div>
-            <div className="absolute inset-0 opacity-5" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            {/* Light Mode: Clean gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100"></div>
+            {/* Subtle dot pattern */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }}></div>
           </>
         )}
       </div>
-
-   
 
       {/* Content */}
       <div className="relative z-10">
@@ -59,7 +40,7 @@ export default function Layout({ children }) {
         <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         
         {/* Main content with responsive padding */}
-        <main className="pb-8 md:pb-12 lg:pb-16">
+        <main className="pb-8 md:pb-12 lg:pb-16 pt-4">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             {children}
           </div>
@@ -67,8 +48,6 @@ export default function Layout({ children }) {
         
         <Footer isDarkMode={isDarkMode} />
       </div>
-
-     
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import QRScanner from '../components/scanner/QRScanner';
 
+import { usePersistedState, useSessionState } from '../hooks/usePersistedState';
 export default function ScanPoints() {
   const [message, setMessage] = useState('');
   const [points, setPoints] = useState(0);
