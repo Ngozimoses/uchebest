@@ -2,13 +2,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // Mock data with more details
+// Mock data with more details
 const mockRiceData = [
   { 
     id: '1', 
-    name: 'Ofada Rice', 
+    name: 'OPPI Rice', 
     description: 'Traditional Nigerian short-grain rice with earthy aroma and natural brown color. Grown organically in Ogun State.', 
-    image: 'https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦5,500',
+    image: 'https://shopaffordablegroceries.com/wp-content/uploads/2025/06/WhatsApp-Image-2025-06-02-at-11.37.44-AM.jpeg',
+    price: '₦70,000',
     weight: '5kg bag',
     origin: 'Ogun State, Nigeria',
     cookingTime: '25-30 minutes',
@@ -17,44 +18,19 @@ const mockRiceData = [
     shelfLife: '12 months'
   },
   { 
-    id: '2', 
-    name: 'Basmati Rice', 
-    description: 'Premium long-grain aromatic rice from India. Perfect for biryanis, pilafs, and special occasions.', 
-    image: 'https://images.pexels.com/photos/12737658/pexels-photo-12737658.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦6,200',
+    id: '3', 
+    name: 'My choice Rice', 
+    description: 'Premium long-grain aromatic rice. Perfect for biryanis, pilafs, and special occasions.', 
+    image: 'https://www-konga-com-res.cloudinary.com/f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/P/239256_1748276924.jpg',
+    price: '₦75,000',
     weight: '5kg bag',
-    origin: 'India',
+    origin: 'Nigeria',
     cookingTime: '15-20 minutes',
     preparation: `1. Wash rice gently\n2. Soak for 20 minutes for longer grains\n3. Use 1:1.5 rice to water ratio\n4. Cook on low heat for 15-20 minutes`,
     nutrition: ['Low in fat', 'Gluten-free', 'Easy to digest', 'Good energy source'],
     shelfLife: '18 months'
   },
-  { 
-    id: '3', 
-    name: 'Abakaliki Rice', 
-    description: 'Premium locally grown white rice from Ebonyi State. Known for its clean taste and fluffy texture.', 
-    image: 'https://images.pexels.com/photos/4110258/pexels-photo-4110258.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,800',
-    weight: '5kg bag',
-    origin: 'Ebonyi State, Nigeria',
-    cookingTime: '20-25 minutes',
-    preparation: `1. Rinse 2-3 times\n2. Use 1:2 rice to water ratio\n3. Cook until water is absorbed\n4. Let it steam for 5 minutes before serving`,
-    nutrition: ['Carbohydrate-rich', 'B-vitamins', 'Iron', 'Easy to cook'],
-    shelfLife: '12 months'
-  },
-  { 
-    id: '4', 
-    name: 'Brown Rice', 
-    description: 'Unpolished whole grain rice rich in fiber and nutrients. Healthier alternative to white rice.', 
-    image: 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦7,800',
-    weight: '5kg bag',
-    origin: 'Multiple sources',
-    cookingTime: '40-45 minutes',
-    preparation: `1. Rinse thoroughly\n2. Soak for 1 hour for faster cooking\n3. Use 1:2.5 rice to water ratio\n4. Cook on low heat for 40-45 minutes`,
-    nutrition: ['High in fiber', 'Rich in antioxidants', 'Magnesium', 'Supports heart health'],
-    shelfLife: '6 months'
-  },
+  // ... other rice products
 ];
 
 export default function RiceDetails() {

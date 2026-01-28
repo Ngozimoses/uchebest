@@ -23,7 +23,7 @@ export default function Home() {
       title: 'Nourish with Nigerian Rice',
       subtitle: 'Rich in Energy & Essential Minerals',
       description: 'Ofada and Basmati rice varieties are packed with magnesium, B-vitamins, and complex carbs for sustained energy. Perfect for active families and growing children.',
-      image: 'https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+      image: 'https://www-konga-com-res.cloudinary.com/f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/P/239256_1748276924.jpg',
       badges: ['High in Fiber', 'Energy Sustaining', 'Low Fat'],
       ctaText: 'Explore Rice Varieties',
       ctaLink: '/rice',
@@ -34,7 +34,7 @@ export default function Home() {
       title: 'Fuel Your Day with Healthy Beans',
       subtitle: 'Plant-Based Protein Powerhouse',
       description: 'Honey beans and black-eyed peas deliver complete plant protein, iron, and fiber — supporting digestion, heart health, and muscle repair without cholesterol.',
-      image: 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+      image: 'https://tropicalsunfoods.com/cdn/shop/files/TSHoneyBeans_1200x1200.jpg?v=1739467378',
       badges: ['High Protein', 'Heart Healthy', 'Rich in Iron'],
       ctaText: 'Discover Bean Recipes',
       ctaLink: '/beans',
@@ -82,40 +82,45 @@ export default function Home() {
   };
 
   // Featured products with better organization
-  const featuredProducts = [
-    { 
-      name: "Ofada Rice", 
-      img: "https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", 
-      desc: "Traditional short-grain with earthy aroma",
-      category: "Rice",
-      price: "₦5,500",
-      rating: 4.8
-    },
-    { 
-      name: "Honey Beans", 
-      img: "https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", 
-      desc: "Sweet, soft, cooked with palm oil",
-      category: "Beans",
-      price: "₦4,800",
-      rating: 4.7
-    },
-    { 
-      name: "Basmati Rice", 
-      img: "https://images.pexels.com/photos/12737658/pexels-photo-12737658.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", 
-      desc: "Long-grain aromatic for biryanis",
-      category: "Rice",
-      price: "₦6,200",
-      rating: 4.9
-    },
-    { 
-      name: "Black-eyed Peas", 
-      img: "https://images.pexels.com/photos/7358698/pexels-photo-7358698.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", 
-      desc: "Protein-rich legume for stews",
-      category: "Beans",
-      price: "₦3,900",
-      rating: 4.6
-    },
-  ];
+// Featured products with IDs for linking to details
+const featuredProducts = [
+  { 
+    id: "1", // Add ID
+    name: "OPPI Rice", 
+    img: "https://shopaffordablegroceries.com/wp-content/uploads/2025/06/WhatsApp-Image-2025-06-02-at-11.37.44-AM.jpeg", 
+    desc: "Traditional short-grain with earthy aroma",
+    category: "Rice",
+    price: "₦70,000",
+    rating: 4.8
+  },
+  { 
+    id: "2", // Add ID
+    name: "Honey Beans", 
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR4FYp64AQMWLuqt-ChrMuMJrWpXlT7jeV5g&s", 
+    desc: "Sweet, soft, cooked with palm oil",
+    category: "Beans",
+    price: "₦4,800",
+    rating: 4.7
+  },
+  { 
+    id: "3", // Add ID
+    name: "My choice Rice", 
+    img: "https://www-konga-com-res.cloudinary.com/f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/P/239256_1748276924.jpg", 
+    desc: "Long-grain aromatic for biryanis",
+    category: "Rice",
+    price: "₦75,000",
+    rating: 4.9
+  },
+  { 
+    id: "4", // Add ID
+    name: "White beans", 
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeR4bY8VZsKix0zI19MhZ4-fGh0GB43TkOwg&s", 
+    desc: "Protein-rich legume for stews",
+    category: "Beans",
+    price: "₦3,900",
+    rating: 4.6
+  },
+];
 
   // Features data
   const features = [
@@ -519,28 +524,28 @@ export default function Home() {
                     {product.desc}
                   </p>
                   
-                  <div className="flex justify-between items-center">
-                    <Link 
-                      to={`/${product.category.toLowerCase()}`} 
-                      className={`font-medium flex items-center group ${
-                        isDarkMode
-                          ? 'text-gold hover:text-yellow-400'
-                          : 'text-yellow-600 hover:text-yellow-700'
-                      }`}
-                    >
-                      View Details
-                      <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </Link>
-                    <button className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                      isDarkMode
-                        ? 'bg-gradient-to-r from-gold/10 to-gold/5 text-gold hover:bg-gold hover:text-black'
-                        : 'bg-gradient-to-r from-yellow-50 to-yellow-100 text-yellow-700 hover:bg-yellow-200'
-                    }`}>
-                      Add to Cart
-                    </button>
-                  </div>
+                 <div className="flex justify-between items-center">
+  <Link 
+    to={`/${product.category.toLowerCase()}/${product.id}`} // Changed this line
+    className={`font-medium flex items-center group ${
+      isDarkMode
+        ? 'text-gold hover:text-yellow-400'
+        : 'text-yellow-600 hover:text-yellow-700'
+    }`}
+  >
+    View Details
+    <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+    </svg>
+  </Link>
+  <button className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${
+    isDarkMode
+      ? 'bg-gradient-to-r from-gold/10 to-gold/5 text-gold hover:bg-gold hover:text-black'
+      : 'bg-gradient-to-r from-yellow-50 to-yellow-100 text-yellow-700 hover:bg-yellow-200'
+  }`}>
+    Add to Cart
+  </button>
+</div>
                 </div>
               </motion.div>
             ))}
