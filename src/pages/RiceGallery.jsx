@@ -6,112 +6,124 @@ import { FaSearch, FaShoppingCart, FaFilter, FaFire, FaLeaf, FaStar, FaChevronLe
 import { useTheme } from '../context/ThemeContext';
 
 import { usePersistedState, useSessionState } from '../hooks/usePersistedState';
-const riceData = [
+const riceData =  [
   { 
     id: '1', 
-    name: 'Ofada Rice', 
-    description: 'Traditional Nigerian short-grain rice with earthy aroma and natural brown color.', 
+    name: 'Abakaliki Rice', 
+    description: 'A nutrient-dense, locally farmed Nigerian staple from Ebonyi State. This short-grain variety is unpolished, retaining its natural bran and earthy aroma.', 
     image: 'https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦5,500',
-    weight: '5kg bag',
-    origin: 'Ogun State',
-    cookingTime: '25-30 mins',
-    rating: 4.8,
-    tags: ['Traditional', 'Organic', 'Best Seller'],
-    category: 'local'
+    price: '₦55,000',
+    weight: '50kg bag',
+    origin: 'Ebonyi State, Nigeria',
+    cookingTime: '25-35 minutes',
+    preparation: `1. Pick through the grains to ensure they are stone-free.\n2. Wash thoroughly in cold water 3-4 times.\n3. Parboil for 10 minutes, rinse, and return to the pot.\n4. Add fresh water (2:1 ratio) and cook until tender.\n5. Best enjoyed with Ofada (Ayamase) stew or local tomato sauce.`,
+    nutrition: ['High fiber content', 'Rich in Manganese', 'Natural B-vitamins', 'Low glycemic index'],
+    shelfLife: '12 months',
+    tags: ['Organic', 'Nutritious', 'Local Favorite']
   },
   { 
     id: '2', 
-    name: 'My chop Rice', 
-    description: 'Premium long-grain aromatic rice from India, perfect for biryanis and special occasions.', 
+    name: 'My Chop Rice', 
+    description: 'A premium long-grain parboiled rice that is highly favored for its consistency. The grains are processed to be extra clean and non-sticky.', 
     image: 'https://i0.wp.com/cfoodstuffmarket.com/wp-content/uploads/2024/11/MY-CHOP-BROWN-RICE-50KG.png?resize=320%2C320&ssl=1',
-    price: '₦6,200',
-    weight: '5kg bag',
-    origin: 'India',
-    cookingTime: '15-20 mins',
-    rating: 4.9,
-    tags: ['Premium', 'Aromatic', 'Imported'],
-    category: 'imported'
+    price: '₦72,000',
+    weight: '50kg bag',
+    origin: 'Thailand / Nigeria Packaged',
+    cookingTime: '20-25 minutes',
+    preparation: `1. Rinse the rice once to remove excess starch.\n2. Add to boiling water (1.5:1 ratio).\n3. Cover tightly and simmer on low heat.\n4. Once water is absorbed, fluff with a fork.`,
+    nutrition: ['Cholesterol-free', 'Energy-providing carbs', 'Enriched with Iron', 'Low sodium'],
+    shelfLife: '24 months',
+    tags: ['Non-Sticky', 'Premium Quality', 'Chef Choice']
   },
   { 
     id: '3', 
-    name: "Ma's choice Rice", 
-    description: 'Premium locally grown white rice from Ebonyi State, known for clean taste and fluffy texture.', 
+    name: "Ma's Choice Rice", 
+    description: 'A top-tier parboiled white rice produced by Olam Group. It is renowned for being 100% stone-free and having a fluffy texture that swells well.', 
     image: 'https://www.buildrestfoods.com/wp-content/uploads/2020/08/Mamas-Choice.jpg',
-    price: '₦4,800',
-    weight: '5kg bag',
-    origin: 'Ebonyi State',
-    cookingTime: '20-25 mins',
-    rating: 4.7,
-    tags: ['Local', 'Fluffy', 'Affordable'],
-    category: 'local'
+    price: '₦87,000',
+    weight: '50kg bag',
+    origin: 'Nigeria (Olam Group)',
+    cookingTime: '15-20 minutes',
+    preparation: `1. No need for heavy washing (pre-cleaned).\n2. Boil water and add the rice directly.\n3. Cook on medium heat until firm-soft.\n4. Ideal for Jollof and Fried rice.`,
+    nutrition: ['Fortified with Vitamin A', 'High energy yield', 'Gluten-free', 'Zero additives'],
+    shelfLife: '18 months',
+    tags: ['Stone-Free', 'Extra Fluffy', 'Top Seller']
   },
   { 
     id: '4', 
     name: 'Simba Rice', 
-    description: 'Unpolished whole grain rice rich in fiber and nutrients. Healthier alternative to white rice.', 
+    description: 'High-quality parboiled rice known for its versatility. It maintains distinct grain separation and is popular for commercial cooking.', 
     image: 'https://api.cloudmall.africa/files/download/18110.jpg',
-    price: '₦7,800',
-    weight: '5kg bag',
-    origin: 'Multiple',
-    cookingTime: '40-45 mins',
-    rating: 4.6,
-    tags: ['Healthy', 'High Fiber', 'Organic'],
-    category: 'healthy'
+    price: '₦87,000',
+    weight: '50kg bag',
+    origin: 'Thailand',
+    cookingTime: '20-25 minutes',
+    preparation: `1. Rinse twice until water is clear.\n2. Use a 2:1 water-to-rice ratio.\n3. For firmer grains (Jollof), use slightly less water.\n4. Steam for 2 minutes after cooking.`,
+    nutrition: ['Complex carbohydrates', 'Low fat', 'Contains Thiamin', 'No preservatives'],
+    shelfLife: '24 months',
+    tags: ['Imported', 'Versatile', 'Long Grain']
   },
   { 
     id: '5', 
-    name: 'Jasmine Rice', 
-    description: 'Fragrant Thai jasmine rice with soft, slightly sticky texture perfect for Asian dishes.', 
-    image: 'https://images.pexels.com/photos/12681236/pexels-photo-12681236.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦6,500',
-    weight: '5kg bag',
+    name: 'Maa Rice (Mama Gold)', 
+    description: 'A household favorite in Nigeria, known as a long-grain parboiled rice that "swells" significantly when cooked, offering great value.', 
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJXZXjDA4RS44WJ1Oq5NezwmJvv6w4y4MWEw&s',
+    price: '₦78,000',
+    weight: '50kg bag',
     origin: 'Thailand',
-    cookingTime: '18-22 mins',
-    rating: 4.7,
-    tags: ['Fragrant', 'Soft', 'Imported'],
-    category: 'imported'
+    cookingTime: '18-22 minutes',
+    preparation: `1. Rinse briefly.\n2. Add to a large pot of boiling water (it expands!).\n3. Cook until tender.\n4. Serve with stew or beans.`,
+    nutrition: ['Easy to digest', 'High caloric value', 'Fat-free', 'Source of Phosphorus'],
+    shelfLife: '18 months',
+    tags: ['High Yield', 'Popular', 'Smooth Grains']
   },
   { 
     id: '6', 
-    name: 'Parboiled Rice', 
-    description: 'Partially boiled rice that retains more nutrients and cooks to separate, fluffy grains.', 
-    image: 'https://images.pexels.com/photos/4110257/pexels-photo-4110257.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦5,000',
-    weight: '5kg bag',
-    origin: 'Nigeria',
-    cookingTime: '25-30 mins',
-    rating: 4.5,
-    tags: ['Nutritious', 'Fluffy', 'Easy to Cook'],
-    category: 'local'
+    name: 'Pretty Lady Rice', 
+    description: 'Marketed in its iconic pink bag, this premium local rice from Kaira Rice Mills rivals imported brands in cleanliness and taste.', 
+  
+    image: 'https://pp-new-node-medusa-prod-bucket.s3.us-east-1.amazonaws.com/Pretty%20Lady%20Rice%2050kg%20(1)-1718821326413.jpeg',
+    price: '₦68,000',
+    weight: '50kg bag',
+    origin: 'Kano, Nigeria',
+    cookingTime: '25-30 minutes',
+    preparation: `1. Wash gently.\n2. Add water covering grains by 1 inch.\n3. Cook on medium-low heat to avoid breaking.\n4. Fluff and serve.`,
+    nutrition: ['Rich in Iron', 'Non-GMO', 'No whiteners', 'High Magnesium'],
+    shelfLife: '12 months',
+    tags: ['Premium Local', 'Award Winning', 'Clean']
   },
   { 
     id: '7', 
-    name: 'Wild Rice', 
-    description: 'Nutty-flavored, protein-rich rice native to North America. Great for salads and pilafs.', 
-    image: 'https://images.pexels.com/photos/1213710/pexels-photo-1213710.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦9,500',
-    weight: '2kg bag',
-    origin: 'USA/Canada',
-    cookingTime: '45-50 mins',
-    rating: 4.4,
-    tags: ['Premium', 'Protein-rich', 'Nutty'],
-    category: 'healthy'
+    name: "Mama's Pride Rice", 
+    description: 'High-quality Nigerian parboiled rice that meets international standards for cleanliness and nutritional value.', 
+
+    image: 'https://www.supermart.ng/cdn/shop/files/spar3219.png?v=1689101915',
+    price: '₦82,000',
+    weight: '50kg bag',
+    origin: 'Nasarawa, Nigeria',
+    cookingTime: '20-25 minutes',
+    preparation: `1. Rinse once.\n2. Boil for 20 minutes with salt.\n3. Let steam in residual heat for 3 minutes.\n4. Perfect for daily family meals.`,
+    nutrition: ['Vitamin B1 source', 'Low sugar', 'Essential minerals', 'Energy source'],
+    shelfLife: '18 months',
+    tags: ['Trusted Brand', 'Standard Grain', 'Daily Essential']
   },
   { 
     id: '8', 
-    name: 'Coconut Rice Mix', 
-    description: 'Rice pre-mixed with coconut flavor for easy preparation of traditional Nigerian coconut rice.', 
-    image: 'https://images.pexels.com/photos/65175/pexels-photo-65175.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦7,200',
-    weight: '2kg pack',
-    origin: 'Nigeria',
-    cookingTime: '25 mins',
-    rating: 4.9,
-    tags: ['Pre-seasoned', 'Convenient', 'Popular'],
-    category: 'specialty'
-  },
+    name: 'Vitali Rice', 
+    description: 'Premium parboiled rice often imported from Thailand, known for its "old crop" quality which ensures it never gets soggy.', 
+
+    image: 'https://24hoursmarket.com/wp-content/uploads/2025/03/1742766875681.jpg',
+    price: '₦85,000',
+    weight: '50kg pack',
+    origin: 'Thailand',
+    cookingTime: '25 minutes',
+    preparation: `1. Wash until water is clear.\n2. Use exactly 2:1 water ratio.\n3. Simmer until absorbed.\n4. Best choice for party Jollof.`,
+    nutrition: ['High Manganese', 'Zero saturated fats', 'Amino acids', 'Potassium-rich'],
+    shelfLife: '24 months',
+    tags: ['Jollof Specialist', 'Imported Premium', 'Consistent']
+  }
 ];
+
 
 const categories = [
   { id: 'all', name: 'All Rice', icon: '🍚' },
@@ -561,19 +573,20 @@ export default function RiceGallery() {
                     
                     {/* Action Buttons */}
                     <div className="flex justify-between items-center">
-                      <Link 
-                        to={`/rice/${rice.id}`} 
-                        className={`font-medium flex items-center group text-sm sm:text-base ${
-                          isDarkMode
-                            ? 'text-gold hover:text-yellow-400'
-                            : 'text-yellow-600 hover:text-yellow-700'
-                        }`}
-                      >
-                        View Details
-                        <svg className="ml-1.5 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                      </Link>
+                     <Link 
+  to={`/rice/${rice.id}`} 
+  state={{ rice }} // Pass the entire rice object
+  className={`font-medium flex items-center group text-sm sm:text-base ${
+    isDarkMode
+      ? 'text-gold hover:text-yellow-400'
+      : 'text-yellow-600 hover:text-yellow-700'
+  }`}
+>
+  View Details
+  <svg className="ml-1.5 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+  </svg>
+</Link>
                       <button className={`px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 hover:scale-105 ${
                         isDarkMode
                           ? 'bg-gradient-to-r from-gold/10 to-gold/5 text-gold hover:bg-gold hover:text-black'

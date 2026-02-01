@@ -6,97 +6,151 @@ import { useTheme } from '../context/ThemeContext';
 
 // Combined products data (rice + beans)
 const productsData = [
-  // Rice products
   { 
-    id: 'rice-1', 
-    name: 'Ofada Rice', 
-    description: 'Traditional Nigerian short-grain rice with earthy aroma and natural brown color.', 
-    image: 'https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦5,500',
-    weight: '5kg bag',
-    category: 'Rice',
+    id: "1", 
+    name: "OPPI Rice", 
+    description: "Traditional short-grain with earthy aroma and excellent nutritional value.", 
+    image: "https://shopaffordablegroceries.com/wp-content/uploads/2025/06/WhatsApp-Image-2025-06-02-at-11.37.44-AM.jpeg", 
+    price: "₦70,000", 
+    weight: "50kg bag",
+    origin: "Nigeria",
+    cookingTime: "25-30 mins",
     rating: 4.8,
-    tags: ['Traditional', 'Organic', 'Best Seller'],
+    tags: ["Earthy", "Traditional", "Organic"],
+    category: "Rice"
   },
   { 
-    id: 'rice-2', 
-    name: 'Basmati Rice', 
-    description: 'Premium long-grain aromatic rice from India, perfect for biryanis and special occasions.', 
-    image: 'https://images.pexels.com/photos/12737658/pexels-photo-12737658.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦6,200',
-    weight: '5kg bag',
-    category: 'Rice',
+    id: "2", 
+    name: "Honey Beans", 
+    description: "Sweet, soft-textured beans that cook perfectly with palm oil for a rich taste.", 
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR4FYp64AQMWLuqt-ChrMuMJrWpXlT7jeV5g&s", 
+    price: "₦4,800", 
+    weight: "Paint bucket/Small bag",
+    origin: "Nigeria (North)",
+    cookingTime: "45-60 mins",
+    rating: 4.7,
+    tags: ["Sweet", "Protein", "Soft Texture"],
+    category: "Beans"
+  },
+  { 
+    id: "3", 
+    name: "My Choice Rice", 
+    description: "Premium Indian long-grain aromatic parboiled rice, perfect for biryanis and Jollof.", 
+    image: "https://www-konga-com-res.cloudinary.com/f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/P/239256_1748276924.jpg", 
+    price: "₦75,000", 
+    weight: "50kg bag",
+    origin: "India",
+    cookingTime: "20-25 mins",
     rating: 4.9,
-    tags: ['Premium', 'Aromatic', 'Imported'],
+    tags: ["Aromatic", "Long Grain", "Non-sticky"],
+    category: "Rice"
   },
   { 
-    id: 'rice-3', 
-    name: 'Abakaliki Rice', 
-    description: 'Premium locally grown white rice from Ebonyi State, known for clean taste and fluffy texture.', 
-    image: 'https://images.pexels.com/photos/4110258/pexels-photo-4110258.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,800',
-    weight: '5kg bag',
-    category: 'Rice',
-    rating: 4.7,
-    tags: ['Local', 'Fluffy', 'Affordable'],
-  },
-  { 
-    id: 'rice-4', 
-    name: 'Brown Rice', 
-    description: 'Unpolished whole grain rice rich in fiber and nutrients. Healthier alternative to white rice.', 
-    image: 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦7,800',
-    weight: '5kg bag',
-    category: 'Rice',
-    rating: 4.6,
-    tags: ['Healthy', 'High Fiber', 'Organic'],
-  },
-  // Beans products
-  { 
-    id: 'beans-1', 
-    name: 'Honey Beans', 
-    description: 'Sweet, soft beans cooked with palm oil and peppers. Perfect for traditional Nigerian bean porridge.', 
-    image: 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,800',
-    weight: '1kg pack',
-    category: 'Beans',
-    rating: 4.7,
-    tags: ['Sweet', 'Organic', 'Traditional'],
-  },
-  { 
-    id: 'beans-2', 
-    name: 'Black-eyed Peas', 
-    description: 'Protein-rich legume used in stews and salads. Excellent for healthy meal prep.', 
-    image: 'https://images.pexels.com/photos/7358698/pexels-photo-7358698.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦3,900',
-    weight: '1kg pack',
-    category: 'Beans',
-    rating: 4.6,
-    tags: ['High Protein', 'Versatile', 'Healthy'],
-  },
-  { 
-    id: 'beans-3', 
-    name: 'Kidney Beans', 
-    description: 'Vibrant red beans perfect for salads, stews, and chilli recipes.', 
-    image: 'https://images.pexels.com/photos/580613/pexels-photo-580613.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,500',
-    weight: '1kg pack',
-    category: 'Beans',
-    rating: 4.7,
-    tags: ['Colorful', 'Healthy', 'Imported'],
-  },
-  { 
-    id: 'beans-4', 
-    name: 'Chickpeas', 
-    description: 'Versatile legumes perfect for hummus, stews, and salads.', 
-    image: 'https://images.pexels.com/photos/580619/pexels-photo-580619.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦5,800',
-    weight: '1kg pack',
-    category: 'Beans',
+    id: "4", 
+    name: "Abakaliki Rice", 
+    description: "Traditional Nigerian short-grain rice with earthy aroma and natural brown color.", 
+    image: "https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    price: "₦45,000 - ₦57,000",
+    weight: "50kg bag",
+    origin: "Ebonyi State",
+    cookingTime: "25-30 mins",
     rating: 4.8,
-    tags: ['Versatile', 'Protein', 'Healthy'],
+    tags: ["Traditional", "Organic", "Best Seller"],
+    category: "local"
   },
+  { 
+    id: "5", 
+    name: "My Chop Rice", 
+    description: "Premium long-grain parboiled rice known for its non-sticky texture and clean grains.", 
+    image: "https://i0.wp.com/cfoodstuffmarket.com/wp-content/uploads/2024/11/MY-CHOP-BROWN-RICE-50KG.png?resize=320%2C320&ssl=1",
+    price: "₦72,000 - ₦89,000",
+    weight: "50kg bag",
+    origin: "Nigeria/Imported Blend",
+    cookingTime: "20-25 mins",
+    rating: 4.9,
+    tags: ["Premium", "Aromatic", "Long Grain"],
+    category: "imported"
+  },
+  { 
+    id: "6", 
+    name: "Ma's Choice Rice", 
+    description: "Premium Nigerian parboiled rice produced by Olam Group, known for its stone-free and clean grains.", 
+    image: "https://www.buildrestfoods.com/wp-content/uploads/2020/08/Mamas-Choice.jpg",
+    price: "₦87,000 - ₦90,000",
+    weight: "50kg bag",
+    origin: "Nigeria",
+    cookingTime: "20-25 mins",
+    rating: 4.7,
+    tags: ["Local", "Fluffy", "Olam Group"],
+    category: "local"
+  },
+  { 
+    id: "7", 
+    name: "Simba Rice", 
+    description: "High-quality short or long grain rice options, often sought for its versatility and low starch content.", 
+    image: "https://api.cloudmall.africa/files/download/18110.jpg",
+    price: "₦87,000",
+    weight: "50kg bag",
+    origin: "Thailand/Multiple",
+    cookingTime: "20-25 mins",
+    rating: 4.6,
+    tags: ["Healthy", "Versatile", "Imported Quality"],
+    category: "healthy"
+  },
+  { 
+    id: "8", 
+    name: "Maa Rice (Mama Gold)", 
+    description: "Highly popular long-grain parboiled rice that 'swells' significantly after cooking, making it a favorite for vendors.", 
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJXZXjDA4RS44WJ1Oq5NezwmJvv6w4y4MWEw&s",
+    price: "₦78,000 - ₦85,000",
+    weight: "50kg bag",
+    origin: "Thailand/Nigeria",
+    cookingTime: "18-22 mins",
+    rating: 4.7,
+    tags: ["Swells Well", "Popular", "Imported"],
+    category: "imported"
+  },
+  { 
+    id: "9", 
+    name: "Pretty Lady Rice", 
+    description: "Produced by Kaira Rice Mills, this rice is famous for its pink packaging and non-sticky texture.", 
+    image: "https://pp-new-node-medusa-prod-bucket.s3.us-east-1.amazonaws.com/Pretty%20Lady%20Rice%2050kg%20(1)-1718821326413.jpeg",
+    price: "₦66,000 - ₦80,000",
+    weight: "50kg bag",
+    origin: "Nigeria",
+    cookingTime: "25-30 mins",
+    rating: 4.5,
+    tags: ["Pink Bag", "Non-Sticky", "Premium Local"],
+    category: "local"
+  },
+  { 
+    id: "10", 
+    name: "Mama's Pride Rice", 
+    description: "Top-tier Nigerian parboiled rice by Olam Nigeria; stone-free, nutritious, and easy to cook.", 
+    image: "https://www.supermart.ng/cdn/shop/files/spar3219.png?v=1689101915",
+    price: "₦66,000 - ₦85,000",
+    weight: "50kg bag",
+    origin: "Nigeria",
+    cookingTime: "20-25 mins",
+    rating: 4.4,
+    tags: ["Stone-Free", "Nutritious", "Local"],
+    category: "local"
+  },
+  { 
+    id: "11", 
+    name: "Vitali Rice", 
+    description: "Premium Thai parboiled rice known for its consistent quality and excellent results in Jollof rice.", 
+    image: "https://24hoursmarket.com/wp-content/uploads/2025/03/1742766875681.jpg",
+    price: "₦75,500 - ₦95,000",
+    weight: "50kg pack",
+    origin: "Thailand",
+    cookingTime: "25 mins",
+    rating: 4.9,
+    tags: ["Thai Parboiled", "Chef Choice", "Premium"],
+    category: "imported"
+  }
 ];
+
 
 const categories = [
   { id: 'all', name: 'All Products', icon: '🛒' },
@@ -426,23 +480,24 @@ export default function ProductsPage() {
                   
                   {/* Action Buttons */}
                   <div className="flex justify-between items-center">
-                    <Link 
-                      to={`/${product.category.toLowerCase()}/${product.id}`} 
-                      className={`font-medium flex items-center group text-sm sm:text-base ${
-                        product.category === "Rice"
-                          ? isDarkMode
-                            ? 'text-purple-400 hover:text-purple-300'
-                            : 'text-purple-600 hover:text-purple-700'
-                          : isDarkMode
-                            ? 'text-emerald-400 hover:text-emerald-300'
-                            : 'text-emerald-600 hover:text-emerald-700'
-                      }`}
-                    >
-                      View Details
-                      <svg className="ml-1.5 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </Link>
+                 <Link 
+  to={`/products/${product.id}`} // Change the route to /products/:id
+  state={{ product }} // Add this line to pass the product object
+  className={`font-medium flex items-center group text-sm sm:text-base ${
+    product.category === "Rice"
+      ? isDarkMode
+        ? 'text-purple-400 hover:text-purple-300'
+        : 'text-purple-600 hover:text-purple-700'
+      : isDarkMode
+        ? 'text-emerald-400 hover:text-emerald-300'
+        : 'text-emerald-600 hover:text-emerald-700'
+  }`}
+>
+  View Details
+  <svg className="ml-1.5 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+  </svg>
+</Link>
                     <button className={`px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 hover:scale-105 ${
                       product.category === "Rice"
                         ? isDarkMode

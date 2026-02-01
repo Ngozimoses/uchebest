@@ -15,7 +15,7 @@ import ProductsPage from './pages/ProductsPage';
 // Lazy-loaded detail pages
 const RiceDetails = lazy(() => import('./components/rice/RiceDetails'));
 const BeansDetails = lazy(() => import('./components/beans/BeansDetails'));
-
+const ProductDetails = lazy(() => import('./components/products/ProductDetails'));
 // Fallback component while loading
 const LazyFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-dark">
@@ -32,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout><Home /></Layout>} />
             <Route path="/rice" element={<Layout><RiceGallery /></Layout>} />
+            <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/rice/:id" element={<Layout><RiceDetails /></Layout>} />
             <Route path="/beans" element={<Layout><BeansGallery /></Layout>} />
             <Route path="/beans/:id" element={<Layout><BeansDetails /></Layout>} />

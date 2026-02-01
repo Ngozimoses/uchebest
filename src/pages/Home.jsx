@@ -23,7 +23,7 @@ export default function Home() {
       title: 'Nourish with Nigerian Rice',
       subtitle: 'Rich in Energy & Essential Minerals',
       description: 'Ofada and Basmati rice varieties are packed with magnesium, B-vitamins, and complex carbs for sustained energy. Perfect for active families and growing children.',
-      image: 'https://www-konga-com-res.cloudinary.com/f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/P/239256_1748276924.jpg',
+      image: 'https://www.africopanigeria.com/wp-content/uploads/2019/02/best-quality-Mamas-Choice-Rice-50kg.jpg',
       badges: ['High in Fiber', 'Energy Sustaining', 'Low Fat'],
       ctaText: 'Explore Rice Varieties',
       ctaLink: '/rice',
@@ -34,7 +34,7 @@ export default function Home() {
       title: 'Fuel Your Day with Healthy Beans',
       subtitle: 'Plant-Based Protein Powerhouse',
       description: 'Honey beans and black-eyed peas deliver complete plant protein, iron, and fiber — supporting digestion, heart health, and muscle repair without cholesterol.',
-      image: 'https://tropicalsunfoods.com/cdn/shop/files/TSHoneyBeans_1200x1200.jpg?v=1739467378',
+      image: 'https://www.foodlocker.com.ng/public/product/brown-beans.jpg',
       badges: ['High Protein', 'Heart Healthy', 'Rich in Iron'],
       ctaText: 'Discover Bean Recipes',
       ctaLink: '/beans',
@@ -85,41 +85,148 @@ export default function Home() {
 // Featured products with IDs for linking to details
 const featuredProducts = [
   { 
-    id: "1", // Add ID
+    id: "1", 
     name: "OPPI Rice", 
-    img: "https://shopaffordablegroceries.com/wp-content/uploads/2025/06/WhatsApp-Image-2025-06-02-at-11.37.44-AM.jpeg", 
-    desc: "Traditional short-grain with earthy aroma",
-    category: "Rice",
-    price: "₦70,000",
-    rating: 4.8
+    description: "Traditional short-grain with earthy aroma and excellent nutritional value.", 
+    image: "https://shopaffordablegroceries.com/wp-content/uploads/2025/06/WhatsApp-Image-2025-06-02-at-11.37.44-AM.jpeg", 
+    price: "₦70,000", 
+    weight: "50kg bag",
+    origin: "Nigeria",
+    cookingTime: "25-30 mins",
+    rating: 4.8,
+    tags: ["Earthy", "Traditional", "Organic"],
+    category: "Rice"
   },
   { 
-    id: "2", // Add ID
+    id: "2", 
     name: "Honey Beans", 
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR4FYp64AQMWLuqt-ChrMuMJrWpXlT7jeV5g&s", 
-    desc: "Sweet, soft, cooked with palm oil",
-    category: "Beans",
-    price: "₦4,800",
-    rating: 4.7
+    description: "Sweet, soft-textured beans that cook perfectly with palm oil for a rich taste.", 
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR4FYp64AQMWLuqt-ChrMuMJrWpXlT7jeV5g&s", 
+    price: "₦4,800", 
+    weight: "Paint bucket/Small bag",
+    origin: "Nigeria (North)",
+    cookingTime: "45-60 mins",
+    rating: 4.7,
+    tags: ["Sweet", "Protein", "Soft Texture"],
+    category: "Beans"
   },
   { 
-    id: "3", // Add ID
-    name: "My choice Rice", 
-    img: "https://www-konga-com-res.cloudinary.com/f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/P/239256_1748276924.jpg", 
-    desc: "Long-grain aromatic for biryanis",
-    category: "Rice",
-    price: "₦75,000",
-    rating: 4.9
+    id: "3", 
+    name: "My Choice Rice", 
+    description: "Premium Indian long-grain aromatic parboiled rice, perfect for biryanis and Jollof.", 
+    image: "https://www-konga-com-res.cloudinary.com/f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/P/239256_1748276924.jpg", 
+    price: "₦75,000", 
+    weight: "50kg bag",
+    origin: "India",
+    cookingTime: "20-25 mins",
+    rating: 4.9,
+    tags: ["Aromatic", "Long Grain", "Non-sticky"],
+    category: "Rice"
   },
   { 
-    id: "4", // Add ID
-    name: "White beans", 
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeR4bY8VZsKix0zI19MhZ4-fGh0GB43TkOwg&s", 
-    desc: "Protein-rich legume for stews",
-    category: "Beans",
-    price: "₦3,900",
-    rating: 4.6
+    id: "4", 
+    name: "Abakaliki Rice", 
+    description: "Traditional Nigerian short-grain rice with earthy aroma and natural brown color.", 
+    image: "https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    price: "₦45,000 - ₦57,000",
+    weight: "50kg bag",
+    origin: "Ebonyi State",
+    cookingTime: "25-30 mins",
+    rating: 4.8,
+    tags: ["Traditional", "Organic", "Best Seller"],
+    category: "local"
   },
+  { 
+    id: "5", 
+    name: "My Chop Rice", 
+    description: "Premium long-grain parboiled rice known for its non-sticky texture and clean grains.", 
+    image: "https://i0.wp.com/cfoodstuffmarket.com/wp-content/uploads/2024/11/MY-CHOP-BROWN-RICE-50KG.png?resize=320%2C320&ssl=1",
+    price: "₦72,000 - ₦89,000",
+    weight: "50kg bag",
+    origin: "Nigeria/Imported Blend",
+    cookingTime: "20-25 mins",
+    rating: 4.9,
+    tags: ["Premium", "Aromatic", "Long Grain"],
+    category: "imported"
+  },
+  { 
+    id: "6", 
+    name: "Ma's Choice Rice", 
+    description: "Premium Nigerian parboiled rice produced by Olam Group, known for its stone-free and clean grains.", 
+    image: "https://www.buildrestfoods.com/wp-content/uploads/2020/08/Mamas-Choice.jpg",
+    price: "₦87,000 - ₦90,000",
+    weight: "50kg bag",
+    origin: "Nigeria",
+    cookingTime: "20-25 mins",
+    rating: 4.7,
+    tags: ["Local", "Fluffy", "Olam Group"],
+    category: "local"
+  },
+  { 
+    id: "7", 
+    name: "Simba Rice", 
+    description: "High-quality short or long grain rice options, often sought for its versatility and low starch content.", 
+    image: "https://api.cloudmall.africa/files/download/18110.jpg",
+    price: "₦87,000",
+    weight: "50kg bag",
+    origin: "Thailand/Multiple",
+    cookingTime: "20-25 mins",
+    rating: 4.6,
+    tags: ["Healthy", "Versatile", "Imported Quality"],
+    category: "healthy"
+  },
+  { 
+    id: "8", 
+    name: "Maa Rice (Mama Gold)", 
+    description: "Highly popular long-grain parboiled rice that 'swells' significantly after cooking, making it a favorite for vendors.", 
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJXZXjDA4RS44WJ1Oq5NezwmJvv6w4y4MWEw&s",
+    price: "₦78,000 - ₦85,000",
+    weight: "50kg bag",
+    origin: "Thailand/Nigeria",
+    cookingTime: "18-22 mins",
+    rating: 4.7,
+    tags: ["Swells Well", "Popular", "Imported"],
+    category: "imported"
+  },
+  { 
+    id: "9", 
+    name: "Pretty Lady Rice", 
+    description: "Produced by Kaira Rice Mills, this rice is famous for its pink packaging and non-sticky texture.", 
+    image: "https://pp-new-node-medusa-prod-bucket.s3.us-east-1.amazonaws.com/Pretty%20Lady%20Rice%2050kg%20(1)-1718821326413.jpeg",
+    price: "₦66,000 - ₦80,000",
+    weight: "50kg bag",
+    origin: "Nigeria",
+    cookingTime: "25-30 mins",
+    rating: 4.5,
+    tags: ["Pink Bag", "Non-Sticky", "Premium Local"],
+    category: "local"
+  },
+  { 
+    id: "10", 
+    name: "Mama's Pride Rice", 
+    description: "Top-tier Nigerian parboiled rice by Olam Nigeria; stone-free, nutritious, and easy to cook.", 
+    image: "https://www.supermart.ng/cdn/shop/files/spar3219.png?v=1689101915",
+    price: "₦66,000 - ₦85,000",
+    weight: "50kg bag",
+    origin: "Nigeria",
+    cookingTime: "20-25 mins",
+    rating: 4.4,
+    tags: ["Stone-Free", "Nutritious", "Local"],
+    category: "local"
+  },
+  { 
+    id: "11", 
+    name: "Vitali Rice", 
+    description: "Premium Thai parboiled rice known for its consistent quality and excellent results in Jollof rice.", 
+    image: "https://24hoursmarket.com/wp-content/uploads/2025/03/1742766875681.jpg",
+    price: "₦75,500 - ₦95,000",
+    weight: "50kg pack",
+    origin: "Thailand",
+    cookingTime: "25 mins",
+    rating: 4.9,
+    tags: ["Thai Parboiled", "Chef Choice", "Premium"],
+    category: "imported"
+  }
 ];
 
   // Features data
@@ -242,50 +349,313 @@ const featuredProducts = [
       </section>
 
       {/* Features Section */}
-      <section className={`py-12 md:py-16 lg:py-20 ${themeClasses.featuresBg}`}>
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 ${themeClasses.goldText}`}>
-              Why Choose Uchebest?
-            </h2>
-            <p className={`text-lg md:text-xl max-w-3xl mx-auto ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              Experience premium quality with innovative features designed for modern living
-            </p>
+ 
+{/* Features Section */}
+<section className={`py-12 md:py-16 lg:py-20 ${themeClasses.featuresBg}`}>
+  <div className="container mx-auto px-4 md:px-6 lg:px-8">
+    <div className="text-center mb-10 md:mb-16">
+      <div className="inline-flex items-center px-4 py-2 bg-gold/20 backdrop-blur-sm rounded-full text-gold text-sm font-medium mb-4">
+        <FaStar className="mr-2" />
+        Our Premium Services
+      </div>
+      
+      <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 ${themeClasses.goldText}`}>
+        Why Shop With <span className={isDarkMode ? 'text-white' : 'text-gray-900'}>Uchebest?</span>
+      </h2>
+      
+      <p className={`text-lg md:text-xl max-w-3xl mx-auto ${
+        isDarkMode ? 'text-gray-300' : 'text-gray-600'
+      }`}>
+        We combine premium quality with innovative features to deliver the best shopping experience
+      </p>
+    </div>
+    
+    {/* Updated Features Grid with 2 columns on mobile, 3 on desktop */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {/* Feature 1 - Premium Quality */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        whileHover={{ y: -8, scale: 1.02 }}
+        className={`relative group p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+          isDarkMode
+            ? 'bg-gradient-to-br from-card via-card/90 to-dark/80 border border-gray-800'
+            : 'bg-white border border-gray-200 shadow-light-lg'
+        }`}
+      >
+        {/* Background glow effect */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+        
+        <div className="relative z-10">
+          <div className={`w-16 h-16 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+            <FaLeaf className={`text-2xl text-emerald-500 group-hover:text-emerald-400 transition-colors`} />
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className={`p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl ${
-                  isDarkMode
-                    ? 'bg-gradient-to-br from-card to-dark/80 border border-gray-800'
-                    : 'bg-white border border-gray-200'
-                }`}
-              >
-                <div className={`w-14 h-14 ${feature.color} bg-opacity-20 rounded-2xl flex items-center justify-center mb-5`}>
-                  <feature.icon className="text-2xl" />
-                </div>
-                <h3 className={`text-xl font-semibold mb-3 ${
-                  isDarkMode ? 'text-white' : 'text-gray-900'
-                }`}>
-                  {feature.title}
-                </h3>
-                <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
+          <h3 className={`text-xl font-bold mb-3 ${
+            isDarkMode ? 'text-white group-hover:text-emerald-400' : 'text-gray-900 group-hover:text-emerald-600'
+          } transition-colors duration-300`}>
+            Premium Quality
+          </h3>
+          
+          <p className={`mb-4 text-sm sm:text-base ${
+            isDarkMode ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-600 group-hover:text-gray-700'
+          } transition-colors duration-300`}>
+            Sourced from trusted local farms and global suppliers. Every product undergoes strict quality checks.
+          </p>
+          
+          <div className="flex items-center text-sm font-medium text-emerald-500">
+            <span>Learn more</span>
+            <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </div>
         </div>
-      </section>
+      </motion.div>
 
+      {/* Feature 2 - Smart Budgeting */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        whileHover={{ y: -8, scale: 1.02 }}
+        className={`relative group p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+          isDarkMode
+            ? 'bg-gradient-to-br from-card via-card/90 to-dark/80 border border-gray-800'
+            : 'bg-white border border-gray-200 shadow-light-lg'
+        }`}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+        
+        <div className="relative z-10">
+          <div className={`w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+            <FaChartLine className={`text-2xl text-blue-500 group-hover:text-blue-400 transition-colors`} />
+          </div>
+          
+          <h3 className={`text-xl font-bold mb-3 ${
+            isDarkMode ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'
+          } transition-colors duration-300`}>
+            Smart Budgeting
+          </h3>
+          
+          <p className={`mb-4 text-sm sm:text-base ${
+            isDarkMode ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-600 group-hover:text-gray-700'
+          } transition-colors duration-300`}>
+            Plan your meals and track spending with our intelligent budget tool. Save up to 30% on groceries.
+          </p>
+          
+          <div className="flex items-center text-sm font-medium text-blue-500">
+            <span>Try Budget Tool</span>
+            <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Feature 3 - Loyalty Rewards */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        whileHover={{ y: -8, scale: 1.02 }}
+        className={`relative group p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+          isDarkMode
+            ? 'bg-gradient-to-br from-card via-card/90 to-dark/80 border border-gray-800'
+            : 'bg-white border border-gray-200 shadow-light-lg'
+        }`}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+        
+        <div className="relative z-10">
+          <div className={`w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+            <FaQrcode className={`text-2xl text-purple-500 group-hover:text-purple-400 transition-colors`} />
+          </div>
+          
+          <h3 className={`text-xl font-bold mb-3 ${
+            isDarkMode ? 'text-white group-hover:text-purple-400' : 'text-gray-900 group-hover:text-purple-600'
+          } transition-colors duration-300`}>
+            Loyalty Rewards
+          </h3>
+          
+          <p className={`mb-4 text-sm sm:text-base ${
+            isDarkMode ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-600 group-hover:text-gray-700'
+          } transition-colors duration-300`}>
+            Scan QR codes in-store to earn points. Redeem for discounts, free products, and exclusive offers.
+          </p>
+          
+          <div className="flex items-center text-sm font-medium text-purple-500">
+            <span>View Rewards</span>
+            <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Feature 4 - Fast Delivery */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        whileHover={{ y: -8, scale: 1.02 }}
+        className={`relative group p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+          isDarkMode
+            ? 'bg-gradient-to-br from-card via-card/90 to-dark/80 border border-gray-800'
+            : 'bg-white border border-gray-200 shadow-light-lg'
+        }`}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+        
+        <div className="relative z-10">
+          <div className={`w-16 h-16 bg-gradient-to-br from-amber-500/20 to-amber-600/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+            <FaTruck className={`text-2xl text-amber-500 group-hover:text-amber-400 transition-colors`} />
+          </div>
+          
+          <h3 className={`text-xl font-bold mb-3 ${
+            isDarkMode ? 'text-white group-hover:text-amber-400' : 'text-gray-900 group-hover:text-amber-600'
+          } transition-colors duration-300`}>
+            Fast Delivery
+          </h3>
+          
+          <p className={`mb-4 text-sm sm:text-base ${
+            isDarkMode ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-600 group-hover:text-gray-700'
+          } transition-colors duration-300`}>
+            Free delivery on orders over ₦10,000 within Lagos. Same-day delivery available for urgent orders.
+          </p>
+          
+          <div className="flex items-center text-sm font-medium text-amber-500">
+            <span>Delivery Info</span>
+            <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Feature 5 - Secure Payment */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        whileHover={{ y: -8, scale: 1.02 }}
+        className={`relative group p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+          isDarkMode
+            ? 'bg-gradient-to-br from-card via-card/90 to-dark/80 border border-gray-800'
+            : 'bg-white border border-gray-200 shadow-light-lg'
+        }`}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+        
+        <div className="relative z-10">
+          <div className={`w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+            <FaShieldAlt className={`text-2xl text-green-500 group-hover:text-green-400 transition-colors`} />
+          </div>
+          
+          <h3 className={`text-xl font-bold mb-3 ${
+            isDarkMode ? 'text-white group-hover:text-green-400' : 'text-gray-900 group-hover:text-green-600'
+          } transition-colors duration-300`}>
+            Secure Payment
+          </h3>
+          
+          <p className={`mb-4 text-sm sm:text-base ${
+            isDarkMode ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-600 group-hover:text-gray-700'
+          } transition-colors duration-300`}>
+            100% secure transactions with multiple payment options. Your financial data is always protected.
+          </p>
+          
+          <div className="flex items-center text-sm font-medium text-green-500">
+            <span>Payment Options</span>
+            <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Feature 6 - Organic & Fresh */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        whileHover={{ y: -8, scale: 1.02 }}
+        className={`relative group p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+          isDarkMode
+            ? 'bg-gradient-to-br from-card via-card/90 to-dark/80 border border-gray-800'
+            : 'bg-white border border-gray-200 shadow-light-lg'
+        }`}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+        
+        <div className="relative z-10">
+          <div className={`w-16 h-16 bg-gradient-to-br from-teal-500/20 to-teal-600/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+            <FaSeedling className={`text-2xl text-teal-500 group-hover:text-teal-400 transition-colors`} />
+          </div>
+          
+          <h3 className={`text-xl font-bold mb-3 ${
+            isDarkMode ? 'text-white group-hover:text-teal-400' : 'text-gray-900 group-hover:text-teal-600'
+          } transition-colors duration-300`}>
+            Organic & Fresh
+          </h3>
+          
+          <p className={`mb-4 text-sm sm:text-base ${
+            isDarkMode ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-600 group-hover:text-gray-700'
+          } transition-colors duration-300`}>
+            All products are 100% organic, pesticide-free, and delivered fresh to preserve nutrients and flavor.
+          </p>
+          
+          <div className="flex items-center text-sm font-medium text-teal-500">
+            <span>Quality Standards</span>
+            <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+
+    {/* Feature Highlights Bar */}
+    <div className={`mt-12 md:mt-16 p-6 rounded-2xl ${
+      isDarkMode 
+        ? 'bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20' 
+        : 'bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-200'
+    }`}>
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="text-center md:text-left">
+          <h3 className={`text-lg font-bold mb-2 ${
+            isDarkMode ? 'text-white' : 'text-gray-900'
+          }`}>
+            Ready to Experience Premium Shopping?
+          </h3>
+          <p className={`text-sm ${
+            isDarkMode ? 'text-gray-300' : 'text-gray-600'
+          }`}>
+            Join thousands of satisfied customers who trust Uchebest for their grocery needs
+          </p>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Link
+            to="/register"
+            className="px-6 py-2.5 bg-gradient-to-r from-gold to-yellow-500 text-black font-semibold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm"
+          >
+            Create Account
+          </Link>
+          <Link
+            to="/products"
+            className={`px-6 py-2.5 border font-semibold rounded-full transition-all duration-300 hover:scale-105 text-sm ${
+              isDarkMode
+                ? 'border-gold text-gold hover:bg-gold hover:text-black'
+                : 'border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white'
+            }`}
+          >
+            Browse Products
+          </Link>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       {/* Animated Carousel Section */}
       <section className={`py-12 md:py-16 lg:py-20 relative overflow-hidden ${
         isDarkMode ? 'bg-dark' : 'bg-gray-50'
@@ -468,7 +838,7 @@ const featuredProducts = [
               >
                 <div className="relative overflow-hidden h-48 md:h-56">
                   <img 
-                    src={product.img} 
+                    src={product.image} 
                     alt={product.name} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -524,20 +894,25 @@ const featuredProducts = [
                     {product.desc}
                   </p>
                   
-                 <div className="flex justify-between items-center">
-  <Link 
-    to={`/${product.category.toLowerCase()}/${product.id}`} // Changed this line
-    className={`font-medium flex items-center group ${
-      isDarkMode
-        ? 'text-gold hover:text-yellow-400'
-        : 'text-yellow-600 hover:text-yellow-700'
-    }`}
-  >
-    View Details
-    <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-    </svg>
-  </Link>
+         <div className="flex justify-between items-center">
+                   <Link 
+  to={`/products/${product.id}`} // Change the route to /products/:id
+  state={{ product }} // Add this line to pass the product object
+  className={`font-medium flex items-center group text-sm sm:text-base ${
+    product.category === "Rice"
+      ? isDarkMode
+        ? 'text-purple-400 hover:text-purple-300'
+        : 'text-purple-600 hover:text-purple-700'
+      : isDarkMode
+        ? 'text-emerald-400 hover:text-emerald-300'
+        : 'text-emerald-600 hover:text-emerald-700'
+  }`}
+>
+  View Details
+  <svg className="ml-1.5 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+  </svg>
+</Link>
   <button className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${
     isDarkMode
       ? 'bg-gradient-to-r from-gold/10 to-gold/5 text-gold hover:bg-gold hover:text-black'

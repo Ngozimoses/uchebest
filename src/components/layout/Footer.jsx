@@ -169,7 +169,7 @@ export default function Footer({ isDarkMode }) {
           <div className="text-center md:text-left">
             <h4 className={`font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>📞 Contact Us</h4>
             <a href="tel:+2348012345678" className={isDarkMode ? 'text-gray-400 hover:text-gold' : 'text-gray-600 hover:text-yellow-600'}>
-              +234 801 234 5678
+              +234 913 328 1741
             </a>
           </div>
           <div className="text-center md:text-left">

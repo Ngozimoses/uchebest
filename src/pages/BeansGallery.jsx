@@ -6,113 +6,69 @@ import { FaSearch, FaShoppingCart, FaLeaf, FaStar, FaFire, FaCheck, FaSeedling }
 import { useTheme } from '../context/ThemeContext';
 
 import { usePersistedState, useSessionState } from '../hooks/usePersistedState';
-const beansData = [
+const mockBeansData = [
   { 
-    id: '1', 
-    name: 'Honey Beans', 
-    description: 'Sweet, soft beans cooked with palm oil and peppers. Perfect for traditional Nigerian bean porridge.', 
-    image: 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,800',
-    weight: '1kg pack',
-    origin: 'Southwest Nigeria',
+    id: 'b1', 
+    name: 'Honey Beans (Oloyin Grade 1)', 
+    description: 'The "Oloyin" (Honey) variety is highly prized for its unique naturally sweet taste and creamy texture. Sourced primarily from Maiduguri, this Grade 1 selection is thoroughly cleaned and stone-free.', 
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTekntu-uNpJ_UN-LXJuFGkqvi5ZHzjNNPXIA&s',
+    price: '₦50,000', // Reflects current 2026 market range per 50kg bag
+    weight: '50kg bag',
+    origin: 'Maiduguri, Borno State',
     cookingTime: '45-60 mins',
-    rating: 4.7,
-    tags: ['Sweet', 'Organic', 'Traditional'],
-    category: 'local'
+    preparation: `1. Rinse grains 2-3 times to remove dust.\n2. No picking required for Grade 1.\n3. Boil with enough water to cover the beans by 2 inches.\n4. Cook until soft and creamy.\n5. Perfect for Ewa Agoyin, Gbegiri soup, or simple bean porridge.`,
+    nutrition: ['Naturally high in protein (24g/100g)', 'Rich in dietary fiber for digestion', 'Low glycemic index suitable for diabetics', 'High in Folate and Iron'],
+    shelfLife: '8-12 months',
+    tags: ['Sweet', 'Premium', 'Fast Cooking'],
+    category: 'brown'
   },
   { 
-    id: '2', 
-    name: 'Black-eyed Peas', 
-    description: 'Protein-rich legume used in stews and salads. Excellent for healthy meal prep.', 
-    image: 'https://images.pexels.com/photos/7358698/pexels-photo-7358698.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦3,900',
-    weight: '1kg pack',
+    id: 'b2', 
+    name: 'Iron Beans (White)', 
+    description: 'A premium variety of white beans known as "Iron Beans" due to their high mineral content. These large, clean grains stay firm when cooked, making them ideal for commercial use.', 
+    image: 'https://i0.wp.com/www.africopanigeria.com/wp-content/uploads/2021/02/Pure-white-beans.png?fit=600%2C600&ssl=1',
+    price: '₦75,000', // Current market pricing for 100kg/50kg variants
+    weight: '50kg bag',
     origin: 'Northern Nigeria',
-    cookingTime: '30-45 mins',
-    rating: 4.6,
-    tags: ['High Protein', 'Versatile', 'Healthy'],
-    category: 'local'
-  },
-  { 
-    id: '3', 
-    name: 'Brown Beans', 
-    description: 'Nutritious local beans ideal for porridge or stew. Rich in fiber and minerals.', 
-    image: 'https://images.pexels.com/photos/580615/pexels-photo-580615.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,300',
-    weight: '1kg pack',
-    origin: 'Middle Belt',
     cookingTime: '50-70 mins',
-    rating: 4.5,
-    tags: ['Nutritious', 'Fiber-rich', 'Local'],
-    category: 'local'
+    preparation: `1. Wash thoroughly to remove surface starch.\n2. Soaking for 4 hours reduces gas and cooking time.\n3. Simmer on medium heat until tender.\n4. Excellent for Akara (fried cakes) and Moin-Moin (steamed pudding) as they peel easily.`,
+    nutrition: ['Exceptionally high Iron content', 'Rich in Magnesium and Potassium', 'High plant-based protein', 'Zero saturated fats'],
+    shelfLife: '18 months',
+    tags: ['Stone-Free', 'Firm Texture', 'Akara/Moin-Moin'],
+    category: 'white'
   },
   { 
-    id: '4', 
-    name: 'White Beans', 
-    description: 'Creamy white beans perfect for porridge and traditional Nigerian recipes.', 
-    image: 'https://images.pexels.com/photos/580612/pexels-photo-580612.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,200',
-    weight: '1kg pack',
-    origin: 'Multiple regions',
-    cookingTime: '40-55 mins',
-    rating: 4.4,
-    tags: ['Creamy', 'Versatile', 'Popular'],
-    category: 'local'
+    id: 'b3', 
+    name: 'Brown Beans (Drum)', 
+    description: 'Commonly known as "Drum" beans, this variety is a Nigerian staple. It is less sweet than Oloyin but has a hearty, earthy flavor that complements rice perfectly.', 
+    image: 'https://www.foodlocker.com.ng/public/product/brown-beans.jpg',
+    price: '₦48,000', // Reflects pricing for premium brown varieties
+    weight: '50kg bag',
+    origin: 'Benue State (Food Basket)',
+    cookingTime: '60-80 mins',
+    preparation: `1. Pick through grains to remove potential stones.\n2. Wash and parboil for 10 minutes, then drain the water (reduces bloating).\n3. Add fresh water and cook until soft.\n4. Best for Rice & Beans, Adalu (corn and beans), or bean stews.`,
+    nutrition: ['Rich in complex carbohydrates', 'High Fiber for heart health', 'Source of Vitamin B1 (Thiamine)', 'Cholesterol-free'],
+    shelfLife: '12 months',
+    tags: ['Earthy Flavor', 'Staple', 'Versatile'],
+    category: 'brown'
   },
   { 
-    id: '5', 
-    name: 'Kidney Beans', 
-    description: 'Vibrant red beans perfect for salads, stews, and chilli recipes.', 
-    image: 'https://images.pexels.com/photos/580613/pexels-photo-580613.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,500',
-    weight: '1kg pack',
-    origin: 'Imported',
-    cookingTime: '35-50 mins',
-    rating: 4.7,
-    tags: ['Colorful', 'Healthy', 'Imported'],
-    category: 'imported'
-  },
-  { 
-    id: '6', 
-    name: 'Lima Beans', 
-    description: 'Buttery-textured beans perfect for soups and side dishes.', 
-    image: 'https://images.pexels.com/photos/580617/pexels-photo-580617.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦4,700',
-    weight: '1kg pack',
-    origin: 'Imported',
-    cookingTime: '45-60 mins',
-    rating: 4.3,
-    tags: ['Buttery', 'Soups', 'Side Dish'],
-    category: 'imported'
-  },
-  { 
-    id: '7', 
-    name: 'Chickpeas', 
-    description: 'Versatile legumes perfect for hummus, stews, and salads.', 
-    image: 'https://images.pexels.com/photos/580619/pexels-photo-580619.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦5,800',
-    weight: '1kg pack',
-    origin: 'Imported',
-    cookingTime: '40-55 mins',
-    rating: 4.8,
-    tags: ['Versatile', 'Protein', 'Healthy'],
-    category: 'imported'
-  },
-  { 
-    id: '8', 
-    name: 'Pigeon Peas', 
-    description: 'Small, protein-packed legumes with nutty flavor for traditional dishes.', 
-    image: 'https://images.pexels.com/photos/6646756/pexels-photo-6646756.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    price: '₦5,100',
-    weight: '1kg pack',
-    origin: 'Local',
-    cookingTime: '35-50 mins',
-    rating: 4.4,
-    tags: ['Nutty', 'Protein-rich', 'Traditional'],
-    category: 'local'
-  },
+    id: 'b4', 
+    name: 'Potasco Beans', 
+    description: 'A popular variety of small honey beans often exported. Known for their fast cooking time and sweet profile, they are a favorite among professional food vendors.', 
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTprGwBlq1EyW5tDx5b-QuLvGcm4k7ET8o4EQ&s',
+    price: '₦70,000',
+    weight: '50kg bag',
+    origin: 'Niger / Maiduguri',
+    cookingTime: '40-50 mins',
+    preparation: `1. Rinse once (usually very clean).\n2. Cook directly without soaking to maintain sweetness.\n3. Add a pinch of salt only when beans are already soft.\n4. Ideal for commercial bean porridge.`,
+    nutrition: ['Easier to digest', 'Rich in antioxidants', 'High caloric energy', 'Contains essential amino acids'],
+    shelfLife: '10 months',
+    tags: ['Small Grain', 'Quick Cook', 'High Yield'],
+    category: 'specialty'
+  }
 ];
-
+const beansData = mockBeansData; // In real scenario, fetch from API or database
 const categories = [
   { id: 'all', name: 'All Beans', icon: '🫘' },
   { id: 'local', name: 'Local', icon: '🇳🇬' },
@@ -176,7 +132,7 @@ export default function BeansGallery() {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1565182999561-18d7dc61c393?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+              backgroundImage: `url('https://cdn.loveandlemons.com/wp-content/uploads/2020/03/beans-480x270.jpg')`,
             }}
           />
           
@@ -407,8 +363,10 @@ export default function BeansGallery() {
                   </div>
                   
                   <div className="flex justify-between items-center">
+                    {/* UPDATED LINK COMPONENT - Passes entire bean object via state */}
                     <Link 
                       to={`/beans/${bean.id}`} 
+                      state={{ bean }} // Pass the entire bean object
                       className={`font-medium flex items-center group text-sm sm:text-base ${
                         isDarkMode
                           ? 'text-emerald-400 hover:text-emerald-300'
