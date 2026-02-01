@@ -1,6 +1,10 @@
-import { FaReceipt, FaChartPie, FaTags, FaListAlt, FaCheck } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { FaReceipt, FaChartPie, FaTags, FaListAlt, FaCheck, FaTable, FaThLarge, FaThList, FaFileAlt, FaExchangeAlt } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 import BudgetItem from './BudgetItem';
+import BudgetGridItem from './BudgetGridItem'; // We'll create this
+import BudgetTableRow from './BudgetTableRow'; // We'll create this
+import BudgetCompactItem from './BudgetCompactItem'; // We'll create this
 import { useTheme } from '../../context/ThemeContext';
 
 const BoughtItemsSummary = ({ items, isDarkMode }) => {
@@ -71,6 +75,9 @@ const BoughtItemsSummary = ({ items, isDarkMode }) => {
 
 export default function BudgetList({ items, onEdit, onDelete, onToggleBought }) {
   const { isDarkMode } = useTheme();
+  const [viewMode, setViewMode] = useState('list'); // 'list', 'grid', 'table', 'compact'
+  const [sortBy, setSortBy] = useState('default'); // 'default', 'amount', 'category', 'bought'
+  
   const total = items.reduce((sum, item) => sum + (item.quantity * item.amount), 0);
   
   const categoryTotals = items.reduce((acc, item) => {
@@ -120,6 +127,40 @@ export default function BudgetList({ items, onEdit, onDelete, onToggleBought }) 
     protein: isDarkMode ? 'text-red-300' : 'text-red-700',
     other: isDarkMode ? 'text-gray-300' : 'text-gray-700'
   };
+
+  // Sort items based on selected sort option
+  const sortedItems = [...items].sort((a, b) => {
+    const totalA = a.quantity * a.amount;
+    const totalB = b.quantity * b.amount;
+    
+    switch(sortBy) {
+      case 'amount':
+        return totalB - totalA; // Highest amount first
+      case 'category':
+        return a.category.localeCompare(b.category);
+      case 'bought':
+        return a.bought === b.bought ? 0 : a.bought ? 1 : -1; // Not bought first
+      case 'description':
+        return a.description.localeCompare(b.description);
+      default:
+        return 0; // Original order
+    }
+  });
+
+  const viewModes = [
+    { id: 'list', name: 'List View', icon: FaThList, description: 'Detailed list with full information' },
+    { id: 'grid', name: 'Grid View', icon: FaThLarge, description: 'Compact cards in grid layout' },
+    { id: 'table', name: 'Table View', icon: FaTable, description: 'Spreadsheet-like table format' },
+    { id: 'compact', name: 'Compact View', icon: FaFileAlt, description: 'Minimalist view for quick scanning' },
+  ];
+
+  const sortOptions = [
+    { id: 'default', name: 'Default Order' },
+    { id: 'amount', name: 'Highest Amount' },
+    { id: 'category', name: 'By Category' },
+    { id: 'bought', name: 'Bought Status' },
+    { id: 'description', name: 'Alphabetical' },
+  ];
 
   if (items.length === 0) {
     return (
@@ -228,41 +269,166 @@ export default function BudgetList({ items, onEdit, onDelete, onToggleBought }) 
       {/* Purchased Items Summary */}
       <BoughtItemsSummary items={items} isDarkMode={isDarkMode} />
 
-      {/* Items List */}
+      {/* View Controls */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className={`${themeClasses.card} backdrop-blur-sm rounded-2xl p-5 sm:p-6 border ${themeClasses.border} shadow-lg`}
+        className={`${themeClasses.card} backdrop-blur-sm rounded-2xl p-5 border ${themeClasses.border} shadow-lg`}
       >
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div>
             <h3 className={`text-lg sm:text-xl font-bold ${themeClasses.textPrimary}`}>Budget Items</h3>
             <p className={`text-sm ${themeClasses.textMuted}`}>Click the cart icon to mark items as bought</p>
           </div>
-          <div className="flex items-center gap-2 mt-2 sm:mt-0">
-            <div className={`text-sm ${themeClasses.textMuted}`}>
-              {items.length} item{items.length !== 1 ? 's' : ''}
+          
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full md:w-auto">
+            {/* Sort Options */}
+            <div className="flex-1 sm:flex-initial">
+              <label className={`block text-xs font-medium mb-1 ${themeClasses.textMuted}`}>
+                <FaExchangeAlt className="inline mr-1" /> Sort By
+              </label>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className={`w-full sm:w-40 text-sm px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                  isDarkMode
+                    ? 'bg-gray-800 border-gray-700 text-white'
+                    : 'bg-white border-gray-300 text-gray-900'
+                }`}
+              >
+                {sortOptions.map(option => (
+                  <option key={option.id} value={option.id}>
+                    {option.name}
+                  </option>
+                ))}
+              </select>
             </div>
-            {items.some(item => item.bought) && (
-              <div className={`px-2 py-1 rounded-full text-xs font-medium ${isDarkMode ? 'bg-emerald-800/50' : 'bg-emerald-100'} ${isDarkMode ? 'text-emerald-300' : 'text-emerald-700'}`}>
-                {items.filter(item => item.bought).length} bought
+
+            {/* View Mode Selector */}
+            <div className="flex-1 sm:flex-initial">
+              <label className={`block text-xs font-medium mb-1 ${themeClasses.textMuted}`}>
+                View Mode
+              </label>
+              <div className="flex bg-gray-800/30 rounded-lg p-1">
+                {viewModes.map((mode) => (
+                  <button
+                    key={mode.id}
+                    onClick={() => setViewMode(mode.id)}
+                    className={`flex-1 flex items-center justify-center px-3 py-2 rounded-md text-sm transition-all ${
+                      viewMode === mode.id
+                        ? 'bg-purple-600 text-white shadow-lg'
+                        : isDarkMode
+                          ? 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
+                    }`}
+                    title={mode.description}
+                  >
+                    <mode.icon className="mr-2" />
+                    <span className="hidden sm:inline">{mode.name}</span>
+                  </button>
+                ))}
               </div>
-            )}
+            </div>
+
+            {/* Stats */}
+            <div className="flex items-center gap-2">
+              <div className={`text-sm ${themeClasses.textMuted}`}>
+                {items.length} item{items.length !== 1 ? 's' : ''}
+              </div>
+              {items.some(item => item.bought) && (
+                <div className={`px-2 py-1 rounded-full text-xs font-medium ${isDarkMode ? 'bg-emerald-800/50' : 'bg-emerald-100'} ${isDarkMode ? 'text-emerald-300' : 'text-emerald-700'}`}>
+                  {items.filter(item => item.bought).length} bought
+                </div>
+              )}
+            </div>
           </div>
         </div>
-        
-        <div className="space-y-3">
-          {items.map((item, index) => (
-            <BudgetItem
-              key={item.id}
-              item={item}
-              onEdit={onEdit}
-              onDelete={onDelete}
-              onToggleBought={onToggleBought}
-            />
-          ))}
-        </div>
+
+        {/* Dynamic Content based on View Mode */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={viewMode}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            {viewMode === 'list' && (
+              <div className="space-y-3">
+                {sortedItems.map((item, index) => (
+                  <BudgetItem
+                    key={item.id}
+                    item={item}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                    onToggleBought={onToggleBought}
+                  />
+                ))}
+              </div>
+            )}
+
+            {viewMode === 'grid' && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {sortedItems.map((item) => (
+                  <BudgetGridItem
+                    key={item.id}
+                    item={item}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                    onToggleBought={onToggleBought}
+                    isDarkMode={isDarkMode}
+                  />
+                ))}
+              </div>
+            )}
+
+            {viewMode === 'table' && (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className={`border-b ${themeClasses.border}`}>
+                      <th className={`text-left py-3 px-4 ${themeClasses.textMuted} font-medium`}>Item</th>
+                      <th className={`text-left py-3 px-4 ${themeClasses.textMuted} font-medium`}>Category</th>
+                      <th className={`text-left py-3 px-4 ${themeClasses.textMuted} font-medium`}>Quantity</th>
+                      <th className={`text-left py-3 px-4 ${themeClasses.textMuted} font-medium`}>Price</th>
+                      <th className={`text-left py-3 px-4 ${themeClasses.textMuted} font-medium`}>Total</th>
+                      <th className={`text-left py-3 px-4 ${themeClasses.textMuted} font-medium`}>Status</th>
+                      <th className={`text-left py-3 px-4 ${themeClasses.textMuted} font-medium`}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sortedItems.map((item) => (
+                      <BudgetTableRow
+                        key={item.id}
+                        item={item}
+                        onEdit={onEdit}
+                        onDelete={onDelete}
+                        onToggleBought={onToggleBought}
+                        isDarkMode={isDarkMode}
+                      />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {viewMode === 'compact' && (
+              <div className="space-y-2">
+                {sortedItems.map((item) => (
+                  <BudgetCompactItem
+                    key={item.id}
+                    item={item}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                    onToggleBought={onToggleBought}
+                    isDarkMode={isDarkMode}
+                  />
+                ))}
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
 
         {/* Summary Footer */}
         <motion.div 
@@ -285,7 +451,10 @@ export default function BudgetList({ items, onEdit, onDelete, onToggleBought }) 
             <div className={`text-sm ${themeClasses.textMuted} flex items-start`}>
               <span className="mr-2">💡</span>
               <span>
-                <span className="font-medium">Tip:</span> Consider bulk purchases for items you use frequently to save money.
+                <span className="font-medium">Tip:</span> {viewMode === 'grid' ? 'Use Grid view for visual overview.' : 
+                               viewMode === 'table' ? 'Use Table view for detailed analysis.' :
+                               viewMode === 'compact' ? 'Use Compact view for quick scanning.' :
+                               'Consider bulk purchases for items you use frequently to save money.'}
               </span>
             </div>
           </div>
